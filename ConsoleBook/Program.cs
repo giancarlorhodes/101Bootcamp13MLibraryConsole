@@ -10,6 +10,7 @@ namespace ConsoleBook
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

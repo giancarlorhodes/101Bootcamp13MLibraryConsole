@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleBook", "ConsoleBook\ConsoleBook.csproj", "{5E5518B2-F8C2-4A4E-9558-DE45C6D6C263}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql_scripts", "sql_scripts", "{B465406C-A04B-4732-9595-45743E9F6E23}"
+	ProjectSection(SolutionItems) = preProject
+		create_table_Author.sql = create_table_Author.sql
+		create_table_Book.sql = create_table_Book.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
