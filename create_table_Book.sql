@@ -2,6 +2,7 @@ USE [Book]
 GO
 
 /****** Object:  Table [dbo].[Book]    Script Date: 2/5/2021 2:10:20 PM ******/
+/***    Giancarlo Rhodes Onshore 101 bootcamp ****/
 SET ANSI_NULLS ON
 GO
 
