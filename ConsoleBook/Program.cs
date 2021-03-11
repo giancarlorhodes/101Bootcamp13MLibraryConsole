@@ -11,6 +11,8 @@ namespace ConsoleLibrary
         static void Main(string[] args)
         {
             Console.WriteLine("********************* Library App Console Starting  ***********************");
+            DbAdo _dbAdo = new DbAdo();
+            _dbAdo.OpenCloseConnection();
 
             string _option;
             string[] _tokens;
