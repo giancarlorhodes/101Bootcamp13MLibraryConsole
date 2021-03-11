@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 namespace ConsoleLibrary
 {
     enum TableName
-    {
-
-        Book,
-        Author
-
+    {        
+        Author = 0,
+        Book = 1
     }
 }
