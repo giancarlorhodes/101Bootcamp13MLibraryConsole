@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleLibrary", "ConsoleBo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql_scripts", "sql_scripts", "{B465406C-A04B-4732-9595-45743E9F6E23}"
 	ProjectSection(SolutionItems) = preProject
+		create_library_data_and_schema.sql = create_library_data_and_schema.sql
 		create_table_Author.sql = create_table_Author.sql
 		create_table_Book.sql = create_table_Book.sql
 	EndProjectSection
