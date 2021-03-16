@@ -28,13 +28,28 @@ namespace ConsoleLibrary
         internal static void PrintTableRows(string inTableNumberToken)
         {
             DbAdo _dbAdo = new DbAdo();
-            List<Book> _books = _dbAdo.GetBooks();
-
-            foreach (var item in _books)
+         
+            switch (inTableNumberToken)
             {
-                Console.WriteLine($"Title: {item.Title}, Description: {item.Description},  Price: {item.Price}");
+                case "0": // Author
+                    {
+                        // student finish this code
+                        break;
+                    }
+                case "1": // Book
+                    {
+
+                        List<Book> _books = _dbAdo.GetBooks();
+                        foreach (var item in _books)
+                        {
+                            Console.WriteLine($"Title: {item.Title}, Description: {item.Description},  Price: {item.Price}");
+                        }
+                        break;
+                    }
             }
+
             Console.WriteLine();
+
         }
     }
 }

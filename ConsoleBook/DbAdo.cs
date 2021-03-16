@@ -43,7 +43,6 @@ namespace ConsoleLibrary
                     //getUserComm.CommandType = CommandType.StoredProcedure;
                     _sqlCommand.CommandType = CommandType.Text;
                     _sqlCommand.CommandTimeout = 35;
-
                     _sqlCommand.Parameters.AddWithValue("@BookID", inOneParticularBook);
 
                     con.Open();
