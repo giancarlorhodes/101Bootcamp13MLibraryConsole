@@ -50,7 +50,7 @@
     <Compile Include="DataEntity\Publisher.cs" />
     <Compile Include="DataEntity\Role.cs" />
     <Compile Include="DbAdo.cs" />
-    <Compile Include="MockDataEntity\Class1.cs" />
+    <Compile Include="MockDataEntity\MockGenresTable.cs" />
     <Compile Include="MockDataEntity\MockBooksTable.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Enums.cs" />
