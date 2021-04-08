@@ -52,6 +52,7 @@
     <Compile Include="DbAdo.cs" />
     <Compile Include="MockDataEntity\MockGenresTable.cs" />
     <Compile Include="MockDataEntity\MockBooksTable.cs" />
+    <Compile Include="MockDataEntity\MockPublishersTable.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Program.cs" />
