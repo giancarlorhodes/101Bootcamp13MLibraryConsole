@@ -77,5 +77,17 @@ namespace ConsoleLibrary
         }
 
 
+
+        public static string[] GetTokensImproved()
+        {
+            string[] _returnedTokens;
+            Console.WriteLine("MENU: PT - print tables, P {#}, A {#} add, D {#} delete, U {#} update, C clear, Q quit. {#} is required table number argument");
+            Console.WriteLine();
+            var _option = Console.ReadLine().ToUpper();
+            _returnedTokens = _option.Split(' ');
+            return _returnedTokens;
+        }
+
+
     }
 }

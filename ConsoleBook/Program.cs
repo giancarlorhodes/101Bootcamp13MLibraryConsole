@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleLibrary.DataEntity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,9 @@ namespace ConsoleLibrary
         {
             Printer.HeaderPrint();
 
+
+            Book slkdjs = new Book();
+
             // TODO: REMOVE
             // DbAdo _dbAdo = new DbAdo();
             // _dbAdo.OpenCloseConnection();
@@ -19,8 +23,7 @@ namespace ConsoleLibrary
             string[] _tokens; // string array
             //GetTokens(out _tokens);
 
-            _tokens = GetTokensImproved();
-
+            _tokens = Printer.GetTokensImproved();
 
             while (_tokens[0] != "Q")
             {
@@ -34,7 +37,6 @@ namespace ConsoleLibrary
                             List<TableName> tablesList = new System.Collections.Generic.List<TableName>();
                             tablesList.Add(TableName.Author);
                             tablesList.Add(TableName.Book);
-
                             Printer _printer = new Printer(tablesList);
                             _printer.PrintTables();
                             break;
@@ -74,20 +76,11 @@ namespace ConsoleLibrary
                             break;
                         }
                 }
-                _tokens = GetTokensImproved();
+                _tokens = Printer.GetTokensImproved();
             }
             Printer.FooterPrint();
         }
-        
-        public static string[] GetTokensImproved() 
-        {
-            string[] _returnedTokens;
-            Console.WriteLine("MENU: PT - print tables, P {#}, A {#} add, D {#} delete, U {#} update, C clear, Q quit. {#} is required table number argument");
-            Console.WriteLine();
-            var _option = Console.ReadLine().ToUpper();
-            _returnedTokens = _option.Split(' ');
-            return _returnedTokens;
-        }
+       
 
     }
 }

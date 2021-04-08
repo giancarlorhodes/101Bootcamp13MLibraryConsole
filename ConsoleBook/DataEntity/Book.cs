@@ -8,7 +8,8 @@ namespace ConsoleLibrary.DataEntity
 {
     class Book
     {
-
+        // data
+        // represents a row of data in a table
         public int BookID { get; set; } // primary key
         public string Title { get; set; }
         public string Description { get; set; }
