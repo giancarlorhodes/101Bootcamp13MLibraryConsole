@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataEntity\Author.cs" />
     <Compile Include="DataEntity\Book.cs" />
     <Compile Include="DataEntity\Genre.cs" />
+    <Compile Include="DataEntity\Publisher.cs" />
     <Compile Include="DataEntity\Role.cs" />
     <Compile Include="DbAdo.cs" />
     <Compile Include="MockDataEntity\Class1.cs" />

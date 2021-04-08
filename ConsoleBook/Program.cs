@@ -13,10 +13,7 @@ namespace ConsoleLibrary
         {
             Printer.HeaderPrint();
 
-
-            Book slkdjs = new Book();
-
-            // TODO: REMOVE
+            // TODO: REMOVE or cleanup
             // DbAdo _dbAdo = new DbAdo();
             // _dbAdo.OpenCloseConnection();
 
