@@ -12,7 +12,6 @@ namespace ConsoleLibrary
         // DATA
         private List<TableName> Tables { get; }
 
-
         // CONSTRUCTORS
         public Printer(List<TableName> inTables)
         {
@@ -75,8 +74,6 @@ namespace ConsoleLibrary
         {
             Console.Clear();
         }
-
-
 
         public static string[] GetTokensImproved()
         {
