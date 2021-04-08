@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleLibrary.DataEntity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,17 @@ namespace ConsoleLibrary
 {
     internal class Printer
     {
+        // DATA
+        private List<TableName> Tables { get; }
 
-        public List<TableName> Tables { get; }
 
-        public Printer(List<TableName> ts)
+        // CONSTRUCTORS
+        public Printer(List<TableName> inTables)
         {
-            Tables = ts;
+            Tables = inTables;
         }
 
+        // METHODS    
         internal void PrintTables()
         {
             Console.WriteLine("****************  TABLES ***********************");
@@ -25,6 +29,10 @@ namespace ConsoleLibrary
             }
         }
 
+        /// <summary>
+        ///  prints out the details for the table or list
+        /// </summary>
+        /// <param name="inTableNumberToken"></param>
         internal static void PrintTableRows(string inTableNumberToken)
         {
             DbAdo _dbAdo = new DbAdo();
@@ -51,5 +59,23 @@ namespace ConsoleLibrary
             Console.WriteLine();
 
         }
+
+        internal static void FooterPrint()
+        {
+            Console.WriteLine("********************* Library App Console Ending  ***********************");
+            Console.ReadLine();
+        }
+
+        internal static void HeaderPrint()
+        {
+            Console.WriteLine("********************* Library App Console Starting  ***********************");
+        }
+
+        internal static void ClearScreen()
+        {
+            Console.Clear();
+        }
+
+
     }
 }

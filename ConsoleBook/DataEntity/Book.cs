@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleLibrary
+namespace ConsoleLibrary.DataEntity
 {
     class Book
     {
@@ -19,7 +19,5 @@ namespace ConsoleLibrary
         public int Genre_FK { get; set; }
         public int Publisher_FK { get; set; } 
     }
-
-
 
 }

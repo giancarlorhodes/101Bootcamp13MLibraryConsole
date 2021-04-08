@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleLibrary.DataEntity;
 
-namespace ConsoleLibrary
+namespace ConsoleLibrary.MockDataEntity
 {
     internal class MockBooks
     {

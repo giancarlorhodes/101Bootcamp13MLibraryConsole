@@ -10,17 +10,20 @@ namespace ConsoleLibrary
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("********************* Library App Console Starting  ***********************");
-            DbAdo _dbAdo = new DbAdo();
-            _dbAdo.OpenCloseConnection();
+            Printer.HeaderPrint();
 
-            string _option;
-            string[] _tokens;
-            GetTokens(out _option, out _tokens);
+            // TODO: REMOVE
+            // DbAdo _dbAdo = new DbAdo();
+            // _dbAdo.OpenCloseConnection();
+
+            string[] _tokens; // string array
+            //GetTokens(out _tokens);
+
+            _tokens = GetTokensImproved();
+
 
             while (_tokens[0] != "Q")
             {
-
                 switch (_tokens[0])
                 {
                     case "PT":
@@ -28,20 +31,20 @@ namespace ConsoleLibrary
 
                             // print implementation
                             // Console.WriteLine("print"); // TESTING ONLY
-                            List<TableName> _ts = new System.Collections.Generic.List<TableName>();
-                            _ts.Add(TableName.Author);
-                            _ts.Add(TableName.Book);
+                            List<TableName> tablesList = new System.Collections.Generic.List<TableName>();
+                            tablesList.Add(TableName.Author);
+                            tablesList.Add(TableName.Book);
 
-                            Printer _printer = new Printer(_ts);
+                            Printer _printer = new Printer(tablesList);
                             _printer.PrintTables();
                             break;
                         }
-
+                        //  prints out the details of the table or list
                     case "P":
                         {
                             int _valueSecondToken;
                             if (int.TryParse(_tokens[1], out _valueSecondToken))
-                            Printer.PrintTableRows(_tokens[1]); // needs implementing
+                                Printer.PrintTableRows(_tokens[1]); // needs implementing
                             break;
                         }
 
@@ -65,23 +68,26 @@ namespace ConsoleLibrary
                             Console.WriteLine("update");  // TESTING ONLY
                             break;
                         }
-
+                    case "C":
+                        {
+                            Printer.ClearScreen();
+                            break;
+                        }
                 }
-                GetTokens(out _option, out _tokens);
-
-
+                _tokens = GetTokensImproved();
             }
-
-            Console.WriteLine("********************* Library App Console Ending  ***********************");
-            Console.ReadLine();
+            Printer.FooterPrint();
         }
-
-        private static void GetTokens(out string _option, out string[] _tokens)
+        
+        public static string[] GetTokensImproved() 
         {
-            Console.WriteLine("MENU: PT - print tables, P {#}, A {#} add, D {#} delete, U {#} update, Q quit. {#} is required table number argument");
+            string[] _returnedTokens;
+            Console.WriteLine("MENU: PT - print tables, P {#}, A {#} add, D {#} delete, U {#} update, C clear, Q quit. {#} is required table number argument");
             Console.WriteLine();
-            _option = Console.ReadLine().ToUpper();
-            _tokens = _option.Split(' ');
+            var _option = Console.ReadLine().ToUpper();
+            _returnedTokens = _option.Split(' ');
+            return _returnedTokens;
         }
+
     }
 }

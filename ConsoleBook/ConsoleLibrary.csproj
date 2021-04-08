@@ -44,14 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Book.cs" />
+    <Compile Include="DataEntity\Book.cs" />
     <Compile Include="DbAdo.cs" />
-    <Compile Include="MockBooks.cs" />
+    <Compile Include="MockDataEntity\Class1.cs" />
+    <Compile Include="MockDataEntity\MockBooksTable.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="DataEntity\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
