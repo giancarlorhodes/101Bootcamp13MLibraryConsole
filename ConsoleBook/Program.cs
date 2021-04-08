@@ -13,24 +13,22 @@ namespace ConsoleLibrary
         {
             Printer.HeaderPrint();
 
-            // TODO: REMOVE or cleanup
+            // TODO: REMOVE or cleanup or move this database code
             // DbAdo _dbAdo = new DbAdo();
             // _dbAdo.OpenCloseConnection();
 
             string[] _tokens; // string array
-            //GetTokens(out _tokens);
-
             _tokens = Printer.GetTokensImproved();
 
             while (_tokens[0] != "Q")
             {
                 switch (_tokens[0])
                 {
+                    // prints a generic list of the tables to operate on
                     case "PT":
                         {
-
-                            // print implementation
-                            // Console.WriteLine("print"); // TESTING ONLY
+                            // TODO: refactor this, seems like a code smell to have to create a list and
+                            // add here? Is there a better place to move this code?
                             List<TableName> tablesList = new System.Collections.Generic.List<TableName>();
                             tablesList.Add(TableName.Author);
                             tablesList.Add(TableName.Book);
@@ -38,29 +36,27 @@ namespace ConsoleLibrary
                             _printer.PrintTables();
                             break;
                         }
-                        //  prints out the details of the table or list
+                    // prints out the details of the table or list
                     case "P":
                         {
+                            // TODO: refactor to remove the out keyword
                             int _valueSecondToken;
                             if (int.TryParse(_tokens[1], out _valueSecondToken))
                                 Printer.PrintTableRows(_tokens[1]); // needs implementing
                             break;
                         }
-
                     case "A":
                         {
                             // adding implementaton for SQLSSERVER DATABASE ADO.NET
                             Console.WriteLine("adding"); // TESTING ONLY
                             break;
                         }
-
                     case "D":
                         {
                             // delete implmentation  for SQLSSERVER DATABASE ADO.NET
                             Console.WriteLine("delete");  // TESTING ONLY
                             break;
                         }
-
                     case "U":
                         {
                             // update implemtation  for SQLSSERVER DATABASE ADO.NET
@@ -77,7 +73,5 @@ namespace ConsoleLibrary
             }
             Printer.FooterPrint();
         }
-       
-
     }
 }

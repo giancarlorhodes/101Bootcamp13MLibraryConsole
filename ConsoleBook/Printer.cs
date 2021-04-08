@@ -34,8 +34,9 @@ namespace ConsoleLibrary
         /// <param name="inTableNumberToken"></param>
         internal static void PrintTableRows(string inTableNumberToken)
         {
-            DbAdo _dbAdo = new DbAdo();
-         
+            //DbAdo _datasource = new DbAdo(); // live database version
+            MockDb _datasource = new MockDb();
+            
             switch (inTableNumberToken)
             {
                 case "0": // Author
@@ -46,7 +47,8 @@ namespace ConsoleLibrary
                 case "1": // Book
                     {
 
-                        List<Book> _books = _dbAdo.GetBooks();
+                        //List<Book> _books = _datasource.GetBooks();
+                        List<Book> _books = _datasource.GetBooks();
                         foreach (var item in _books)
                         {
                             Console.WriteLine($"Title: {item.Title}, Description: {item.Description},  Price: {item.Price}");
