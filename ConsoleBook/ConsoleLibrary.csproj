@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataEntity\Book.cs" />
+    <Compile Include="DataEntity\Genre.cs" />
+    <Compile Include="DataEntity\Role.cs" />
     <Compile Include="DbAdo.cs" />
     <Compile Include="MockDataEntity\Class1.cs" />
     <Compile Include="MockDataEntity\MockBooksTable.cs" />

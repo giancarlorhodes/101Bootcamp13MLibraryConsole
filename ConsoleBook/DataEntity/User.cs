@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleLibrary
 {
-    class User
-    {
-        public int UserID { get; set; } // primary key property
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public int RoleID_FK {get;set;} // foreign key property
-    }
+    //class User
+    //{
+    //    public int UserID { get; set; } // primary key property
+    //    public string LastName { get; set; }
+    //    public string FirstName { get; set; }
+    //    public string UserName { get; set; }
+    //    public string Password { get; set; }
+    //    public int RoleID_FK {get;set;} // foreign key property
+    //}
 }
