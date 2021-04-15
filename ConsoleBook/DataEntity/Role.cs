@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleLibrary.DataEntity
 {
-    class Role
+    public class Role
     {
-
         public int RoleID { get; set; }
         public string RoleName { get; set; }
 

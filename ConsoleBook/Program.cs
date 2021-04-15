@@ -1,9 +1,9 @@
 ﻿using ConsoleLibrary.DataEntity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
+using System.Data.SqlClient; // needs to be added to use database Classes
+
 
 namespace ConsoleLibrary
 {
@@ -11,6 +11,8 @@ namespace ConsoleLibrary
     {
         static void Main(string[] args)
         {
+
+                  
             Printer.HeaderPrint();
 
             // TODO: REMOVE or cleanup or move this database code

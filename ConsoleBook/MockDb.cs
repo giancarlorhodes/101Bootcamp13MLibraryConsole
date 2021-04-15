@@ -11,5 +11,15 @@ namespace ConsoleLibrary
             MockBooksTable _table = new MockBooksTable();
             return _table.Books;
         }
+
+        // TODO need GetAuthors
+
+        // TODO need GetGenre
+
+        // TODO need GetPublishers
+
+        // TODO need GetRoles
+
+        // TODO need GetUsers
     }
 }
