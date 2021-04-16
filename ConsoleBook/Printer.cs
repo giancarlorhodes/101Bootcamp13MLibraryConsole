@@ -90,11 +90,15 @@ namespace ConsoleLibrary
         }
 
 
-        internal static string MainMenuPrint()
+        internal static string MainMenuPrint(Boolean f)
         {
             //search, login, register  - main menu
-            Console.WriteLine("MENU: S - Search, L - Login, R - Register, Q - Quit");
-            string input = Console.ReadLine();
+            string input = "";
+            if (!f)
+            {
+                Console.WriteLine("MENU: S - Search, L - Login, R - Register, Q - Quit");
+                input = Console.ReadLine();
+            }
             return input;
         }
 
@@ -117,5 +121,9 @@ namespace ConsoleLibrary
             return u;
         }
 
+        internal static void GeneralMenuOptions()
+        {
+            Console.WriteLine("MENU: S - Search, P - update my profile, L - logout");
+        }
     }
 }

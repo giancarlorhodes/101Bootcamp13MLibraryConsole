@@ -268,6 +268,47 @@ namespace ConsoleLibrary
         }
 
 
+        public  List<User> GetUsers()
+        {
+            List<User> _list = new List<User>();
+
+
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spGetUser", con))
+                {
+                    _sqlCommand.CommandType = CommandType.Text;
+                    _sqlCommand.CommandTimeout = 35;
+
+
+                    con.Open();
+                    User _user;
+
+
+                    using (SqlDataReader reader = _sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            _user = new User
+                            {
+                                UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                LastName = (string)reader["LastName"],
+                                FirstName = (string)reader["FirstName"],
+                                UserName = (string)reader["UserName"],
+                                Password = (string)reader["Password"],
+                                RoleID_FK = reader.GetInt32(reader.GetOrdinal("RoleID_FK"))
+
+
+                            };
+                            _list.Add(_user);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            return _list;
+        }
+
         //// TESTING connection
         //internal void OpenCloseConnection()
         //{
