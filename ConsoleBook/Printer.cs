@@ -28,6 +28,8 @@ namespace ConsoleLibrary
             }
         }
 
+       
+
         /// <summary>
         ///  prints out the details for the table or list
         /// </summary>
@@ -64,7 +66,7 @@ namespace ConsoleLibrary
         internal static void FooterPrint()
         {
             Console.WriteLine("********************* Library App Console Ending  ***********************");
-            Console.ReadLine();
+          
         }
 
         internal static void HeaderPrint()
@@ -87,6 +89,33 @@ namespace ConsoleLibrary
             return _returnedTokens;
         }
 
+
+        internal static string MainMenuPrint()
+        {
+            //search, login, register  - main menu
+            Console.WriteLine("MENU: S - Search, L - Login, R - Register, Q - Quit");
+            string input = Console.ReadLine();
+            return input;
+        }
+
+
+        internal static User CollectAddUserData()
+        {
+            User u = new User();
+
+            // code for getting this User information
+            Console.WriteLine("Enter FirstName: ");
+            u.FirstName = Console.ReadLine();
+            Console.WriteLine("Enter LastName: ");
+            u.LastName = Console.ReadLine();
+            Console.WriteLine("Enter Username: ");
+            u.UserName = Console.ReadLine();
+            Console.WriteLine("Enter Password: ");
+            u.Password = Console.ReadLine();
+            // TODO: how to deal with the RoleID ?
+            u.RoleID_FK = 3; // Patron as default for now
+            return u;
+        }
 
     }
 }

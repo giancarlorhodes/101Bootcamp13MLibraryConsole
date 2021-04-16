@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleLibrary
 {
-    class User
+    public class User
     {
         // data 
         public int UserID { get; set; } // primary key property

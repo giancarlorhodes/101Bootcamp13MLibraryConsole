@@ -14,20 +14,18 @@ namespace UnitTestLibrary
     {
         // data
         private string _conn;
-
         private DbAdo _datasource;
 
         // Constructor
         public UnitTestRole()
         {
             _conn = this.GetConnectionString();
-            _datasource = new DbAdo(_conn);
+            _datasource = new DbAdo(_conn); // 
         }
 
         // methods
         private string GetConnectionString()
-        {
-            //return ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
+        { 
             return "Data Source=LAPTOP-401;Initial Catalog=Library;Integrated Security=True";
         }
 
@@ -115,17 +113,15 @@ namespace UnitTestLibrary
 
             // assert
             int key = _datasource.CreateRole(addRole); // need to delete this one          
-            list = _datasource.GetRole();
-      
-            int findIt = list.Where(r => r.RoleID == key).ToList().Count;
-            Assert.IsTrue(findIt == 1);
+            //list = _datasource.GetRole();
+
+            addRole.RoleName = "Change Role Name";
             addRole.RoleID = key;
-            _datasource.DeleteRole(addRole);
+            _datasource.UpdateRole(addRole);
+      
+            _datasource.DeleteRole(addRole); // clean up the added/updated row of data
             _sqlConnection.Close();
 
         }
-
-
-
     }
 }

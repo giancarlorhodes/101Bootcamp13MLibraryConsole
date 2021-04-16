@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
@@ -123,7 +120,6 @@ namespace ConsoleLibrary
             }
         }
 
-
         public void UpdateRole(Role r)
         {
             using (SqlConnection con = new SqlConnection(_conn))
@@ -153,6 +149,125 @@ namespace ConsoleLibrary
         }
 
 
+        public void CreateUser(User u)
+        {
+
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spCreateUser", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
+
+                    SqlParameter _paramFirstName = _sqlCommand.CreateParameter();
+                    _paramFirstName.DbType = DbType.String;
+                    _paramFirstName.ParameterName = "@ParamFirstName";
+                    _paramFirstName.Value = u.FirstName;
+                    _sqlCommand.Parameters.Add(_paramFirstName);
+
+                    SqlParameter _paramLastName = _sqlCommand.CreateParameter();
+                    _paramLastName.DbType = DbType.String;
+                    _paramLastName.ParameterName = "@ParamLastName";
+                    _paramLastName.Value = u.LastName;
+                    _sqlCommand.Parameters.Add(_paramLastName);
+
+                    SqlParameter _paramUserName = _sqlCommand.CreateParameter();
+                    _paramUserName.DbType = DbType.String;
+                    _paramUserName.ParameterName = "@ParamUserName";
+                    _paramUserName.Value = u.UserName;
+                    _sqlCommand.Parameters.Add(_paramUserName);
+
+                    SqlParameter _paramPassword = _sqlCommand.CreateParameter();
+                    _paramPassword.DbType = DbType.String;
+                    _paramPassword.ParameterName = "@ParamPassword";
+                    _paramPassword.Value = u.Password;
+                    _sqlCommand.Parameters.Add(_paramPassword);
+
+                    SqlParameter _paramRoleIdFK = _sqlCommand.CreateParameter();
+                    _paramRoleIdFK.DbType = DbType.Int32;
+                    _paramRoleIdFK.ParameterName = "@ParamRoleID";
+                    _paramRoleIdFK.Value = u.RoleID_FK;
+                    _sqlCommand.Parameters.Add(_paramRoleIdFK);
+
+                    //SqlParameter _paramAuthorIDReturn = _sqlCommand.CreateParameter();
+                    //_paramAuthorIDReturn.DbType = DbType.Int32;
+                    //_paramAuthorIDReturn.ParameterName = "@ParamOutAuthorID";
+                    //var pk = _sqlCommand.Parameters.Add(_paramAuthorIDReturn);
+                    //_paramAuthorIDReturn.Direction = ParameterDirection.Output;
+
+                    con.Open();
+                    _sqlCommand.ExecuteNonQuery();   // calls the sp 
+                                                     //var result = _paramAuthorIDReturn.Value;
+                    con.Close();
+                    //return (int)result;
+
+
+                }
+            }
+        }
+
+
+        public void CreateAuthor(Author a)
+
+        {
+
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spCreateAuthor", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
+                    //_sqlCommand.Parameters.AddWithValue("@ParamRoleName", r.RoleName);
+                    //_sqlCommand.Parameters.Add("@ParamRoleName", SqlDbType.NVarChar(100)).Value = r.RoleName;
+                    SqlParameter _paramFirstName = _sqlCommand.CreateParameter();
+                    _paramFirstName.DbType = DbType.String;
+                    _paramFirstName.ParameterName = "@ParamFirstName";
+                    _paramFirstName.Value = a.FirstName;
+                    _sqlCommand.Parameters.Add(_paramFirstName);
+
+                    SqlParameter _paramLastName = _sqlCommand.CreateParameter();
+                    _paramLastName.DbType = DbType.String;
+                    _paramLastName.ParameterName = "@ParamLastName";
+                    _paramLastName.Value = a.LastName;
+                    _sqlCommand.Parameters.Add(_paramLastName);
+
+                    SqlParameter _paramBio = _sqlCommand.CreateParameter();
+                    _paramBio.DbType = DbType.String;
+                    _paramBio.ParameterName = "@ParamBio";
+                    _paramBio.Value = a.Bio;
+                    _sqlCommand.Parameters.Add(_paramBio);
+
+                    SqlParameter _paramDateOfBirth = _sqlCommand.CreateParameter();
+                    _paramDateOfBirth.DbType = DbType.DateTime;
+                    _paramDateOfBirth.ParameterName = "@ParamDateOfBirth";
+                    _paramDateOfBirth.Value = a.DateOfBirth;
+                    _sqlCommand.Parameters.Add(_paramDateOfBirth);
+
+                    SqlParameter _paramBirthLocation = _sqlCommand.CreateParameter();
+                    _paramBirthLocation.DbType = DbType.String;
+                    _paramBirthLocation.ParameterName = "@ParamBirthLocation";
+                    _paramBirthLocation.Value = a.BirthLocation;
+                    _sqlCommand.Parameters.Add(_paramBirthLocation);
+
+
+                    //SqlParameter _paramAuthorIDReturn = _sqlCommand.CreateParameter();
+                    //_paramAuthorIDReturn.DbType = DbType.Int32;
+                    //_paramAuthorIDReturn.ParameterName = "@ParamOutAuthorID";
+                    //var pk = _sqlCommand.Parameters.Add(_paramAuthorIDReturn);
+                    //_paramAuthorIDReturn.Direction = ParameterDirection.Output;
+
+                    con.Open();
+                    _sqlCommand.ExecuteNonQuery();   // calls the sp 
+                                                     //var result = _paramAuthorIDReturn.Value;
+                    con.Close();
+                    //return (int)result;
+
+
+                }
+            }
+        }
+
+
         //// TESTING connection
         //internal void OpenCloseConnection()
         //{
@@ -162,7 +277,6 @@ namespace ConsoleLibrary
         //    Console.WriteLine("Connection is " + _sqlConnection.State.ToString());
         //    _sqlConnection.Close();
         //    Console.WriteLine("Connection is " + _sqlConnection.State.ToString());
-
         //}
 
 
