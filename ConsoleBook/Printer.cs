@@ -92,7 +92,6 @@ namespace ConsoleLibrary
 
         internal static string MainMenuPrint(Boolean f)
         {
-            //search, login, register  - main menu
             string input = "";
             if (!f)
             {

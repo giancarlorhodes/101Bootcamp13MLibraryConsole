@@ -13,6 +13,6 @@ namespace ConsoleLibrary.DataEntity
         public string LastName { get; set; }
         public string Bio { get; set; }
         public string BirthLocation { get; set; }
-        public int DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
     }
 }

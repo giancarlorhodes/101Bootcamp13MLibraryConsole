@@ -9,8 +9,8 @@ namespace ConsoleLibrary
 {
     public class DbAdo
     {
-         // data
-         private string _conn;
+        // data
+        private string _conn;
 
         // Constructor
         public DbAdo()
@@ -29,8 +29,8 @@ namespace ConsoleLibrary
             return ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
         }
 
-        // ROLES CRUD
-        public List<Role> GetRole() 
+        #region Role CRUD
+        public List<Role> GetRole()
         {
             List<Role> _list = new List<Role>();
 
@@ -50,8 +50,8 @@ namespace ConsoleLibrary
                         {
                             _role = new Role
                             {
-                                 RoleID = reader.GetInt32(reader.GetOrdinal("RoleID")),
-                                 RoleName = (string)reader["RoleName"]
+                                RoleID = reader.GetInt32(reader.GetOrdinal("RoleID")),
+                                RoleName = (string)reader["RoleName"]
                                 //Description = (string)reader["Book_Description"],
                                 //Price = reader.GetDecimal(reader.GetOrdinal("Book_Price")),
                                 //IsPaperback = (string)reader["Book_IsPaperBack"],
@@ -86,7 +86,7 @@ namespace ConsoleLibrary
 
                     SqlParameter _paramRoleIDReturn = _sqlCommand.CreateParameter();
                     _paramRoleIDReturn.DbType = DbType.Int32;
-                    _paramRoleIDReturn.ParameterName = "@ParamOutRoleID";                   
+                    _paramRoleIDReturn.ParameterName = "@ParamOutRoleID";
                     var pk = _sqlCommand.Parameters.Add(_paramRoleIDReturn);
                     _paramRoleIDReturn.Direction = ParameterDirection.Output;
 
@@ -99,7 +99,7 @@ namespace ConsoleLibrary
             }
         }
 
-        public void DeleteRole(Role r) 
+        public void DeleteRole(Role r)
         {
             using (SqlConnection con = new SqlConnection(_conn))
             {
@@ -147,11 +147,11 @@ namespace ConsoleLibrary
                 }
             }
         }
+        #endregion
 
-
+        #region User CRUD
         public void CreateUser(User u)
         {
-
             using (SqlConnection con = new SqlConnection(_conn))
             {
                 using (SqlCommand _sqlCommand = new SqlCommand("spCreateUser", con))
@@ -206,11 +206,93 @@ namespace ConsoleLibrary
             }
         }
 
+        public List<User> GetUsers()
+        {
+            List<User> _list = new List<User>();
+
+
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spGetUser", con))
+                {
+                    _sqlCommand.CommandType = CommandType.Text;
+                    _sqlCommand.CommandTimeout = 35;
+
+
+                    con.Open();
+                    User _user;
+
+
+                    using (SqlDataReader reader = _sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            _user = new User
+                            {
+                                UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                LastName = (string)reader["LastName"],
+                                FirstName = (string)reader["FirstName"],
+                                UserName = (string)reader["UserName"],
+                                Password = (string)reader["Password"],
+                                RoleID_FK = reader.GetInt32(reader.GetOrdinal("RoleID_FK"))
+
+
+                            };
+                            _list.Add(_user);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            return _list;
+        }
+
+        #endregion User CRUD
+
+        #region Author CRUD
+
+        public List<Author> GetAuthor()
+        {
+            List<Author> _listAuth = new List<Author>();
+
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spGetAuthor", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
+                    //_sqlCommand.Parameters.AddWithValue("@BookID", inOneParticularBook);
+
+                    con.Open();
+                    Author _Author;
+
+                    using (SqlDataReader reader = _sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            _Author = new Author
+                            {
+
+                                AuthorID = reader.GetInt32(reader.GetOrdinal("AuthorID")),
+                                FirstName = (string)reader["FirstName"],
+                                LastName = (string)reader["LastName"],
+                                Bio = (string)reader["Bio"],
+                                DateOfBirth = reader.GetDateTime(reader.GetOrdinal("DateOfBirth")),
+                                BirthLocation = (string)reader["BirthLocation"]
+
+                            };
+                            _listAuth.Add(_Author);
+                        }
+                    }
+                    con.Close();
+                }
+                return _listAuth;
+            }
+
+        }
 
         public void CreateAuthor(Author a)
-
         {
-
             using (SqlConnection con = new SqlConnection(_conn))
             {
                 using (SqlCommand _sqlCommand = new SqlCommand("spCreateAuthor", con))
@@ -261,46 +343,125 @@ namespace ConsoleLibrary
                                                      //var result = _paramAuthorIDReturn.Value;
                     con.Close();
                     //return (int)result;
-
-
                 }
             }
         }
 
-
-        public  List<User> GetUsers()
+        public void UpdateAuthor(Author a)
         {
-            List<User> _list = new List<User>();
-
-
             using (SqlConnection con = new SqlConnection(_conn))
             {
-                using (SqlCommand _sqlCommand = new SqlCommand("spGetUser", con))
+                using (SqlCommand _sqlCommand = new SqlCommand("spUpdateAuthor", con))
                 {
-                    _sqlCommand.CommandType = CommandType.Text;
-                    _sqlCommand.CommandTimeout = 35;
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
 
+
+                    SqlParameter _paramFirstName = _sqlCommand.CreateParameter();
+                    _paramFirstName.DbType = DbType.String;
+                    _paramFirstName.ParameterName = "@ParamFirstName";
+                    _paramFirstName.Value = a.FirstName;
+                    _sqlCommand.Parameters.Add(_paramFirstName);
+
+                    SqlParameter _paramLastName = _sqlCommand.CreateParameter();
+                    _paramLastName.DbType = DbType.String;
+                    _paramLastName.ParameterName = "@ParamLastName";
+                    _paramLastName.Value = a.LastName;
+                    _sqlCommand.Parameters.Add(_paramLastName);
+
+                    SqlParameter _paramBio = _sqlCommand.CreateParameter();
+                    _paramBio.DbType = DbType.String;
+                    _paramBio.ParameterName = "@ParamBio";
+                    _paramBio.Value = a.Bio;
+                    _sqlCommand.Parameters.Add(_paramBio);
+
+                    SqlParameter _paramDateOfBirth = _sqlCommand.CreateParameter();
+                    _paramDateOfBirth.DbType = DbType.DateTime;
+                    _paramDateOfBirth.ParameterName = "@ParamDateOfBirth";
+                    _paramDateOfBirth.Value = a.DateOfBirth;
+                    _sqlCommand.Parameters.Add(_paramDateOfBirth);
+
+                    SqlParameter _paramBirthLocation = _sqlCommand.CreateParameter();
+                    _paramBirthLocation.DbType = DbType.String;
+                    _paramBirthLocation.ParameterName = "@ParamBirthLocation";
+                    _paramBirthLocation.Value = a.BirthLocation;
+                    _sqlCommand.Parameters.Add(_paramBirthLocation);
+
+                    SqlParameter _paramAuthorID = _sqlCommand.CreateParameter();
+                    _paramAuthorID.DbType = DbType.Int32;
+                    _paramAuthorID.ParameterName = "@ParamAuthorID";
+                    _paramAuthorID.Value = a.AuthorID;
+                    _sqlCommand.Parameters.Add(_paramAuthorID);
 
                     con.Open();
-                    User _user;
+                    _sqlCommand.ExecuteNonQuery();   // calls the sp                 
+                    con.Close();
+                }
+            }
+        }
 
+        public void DeleteAuthor(Author a)
 
+        {
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spDeleteAuthor", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
+
+                    SqlParameter _parameter = _sqlCommand.CreateParameter();
+                    _parameter.DbType = DbType.Int32;
+                    _parameter.ParameterName = "@ParamAuthorID";
+                    _parameter.Value = a.AuthorID;
+                    _sqlCommand.Parameters.Add(_parameter);
+
+                    con.Open();
+                    _sqlCommand.ExecuteNonQuery();   // calls the sp                 
+                    con.Close();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Book CRUD
+
+        public List<Book> GetBooks()
+        {
+
+            // TESTing - just mock the list right now
+            // MockBooks _mockBooks = new MockBooks();
+            // return _mockBooks.Books;
+
+            // implement this with ado.net  
+            List<Book> _list = new List<Book>();
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spGetBook", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
+
+                    con.Open();
+                    Book _book;
                     using (SqlDataReader reader = _sqlCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            _user = new User
+                            _book = new Book
                             {
-                                UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
-                                LastName = (string)reader["LastName"],
-                                FirstName = (string)reader["FirstName"],
-                                UserName = (string)reader["UserName"],
-                                Password = (string)reader["Password"],
-                                RoleID_FK = reader.GetInt32(reader.GetOrdinal("RoleID_FK"))
-
-
+                                BookID = reader.GetInt32(reader.GetOrdinal("BookID")),
+                                Title = (string)reader["Title"],
+                                Description = (string)reader["Description"],
+                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                                IsPaperback =  reader.GetBoolean(reader.GetOrdinal("IsPaperBack")),
+                                PublishDate = reader.GetDateTime(reader.GetOrdinal("PublishDate")),
+                                AuthorID_FK = reader.GetInt32(reader.GetOrdinal("AuthorID_FK")),
+                                GenreID_FK = reader.GetInt32(reader.GetOrdinal("GenreID_FK")),
+                                PublisherID_FK = reader.GetInt32(reader.GetOrdinal("PublisherID_FK"))
                             };
-                            _list.Add(_user);
+                            _list.Add(_book);
                         }
                     }
                     con.Close();
@@ -309,67 +470,172 @@ namespace ConsoleLibrary
             return _list;
         }
 
-        //// TESTING connection
-        //internal void OpenCloseConnection()
-        //{
+        public int CreateBook(Book b)
+        {
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spCreateBook", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
 
-        //    SqlConnection _sqlConnection = new SqlConnection(_conn);
-        //    _sqlConnection.Open();
-        //    Console.WriteLine("Connection is " + _sqlConnection.State.ToString());
-        //    _sqlConnection.Close();
-        //    Console.WriteLine("Connection is " + _sqlConnection.State.ToString());
-        //}
+                    SqlParameter _paramTitle = _sqlCommand.CreateParameter();
+                    _paramTitle.DbType = DbType.String;
+                    _paramTitle.ParameterName = "@ParamTitle";
+                    _paramTitle.Value = b.Title;
+                    _sqlCommand.Parameters.Add(_paramTitle);
 
+                    SqlParameter _paramDescription = _sqlCommand.CreateParameter();
+                    _paramDescription.DbType = DbType.String;
+                    _paramDescription.ParameterName = "@ParamDescription";
+                    _paramDescription.Value = b.Description;
+                    _sqlCommand.Parameters.Add(_paramDescription);
 
+                    SqlParameter _paramPrice = _sqlCommand.CreateParameter();
+                    _paramPrice.DbType = DbType.Decimal;
+                    _paramPrice.ParameterName = "@ParamPrice";
+                    _paramPrice.Value = b.Price;
+                    _sqlCommand.Parameters.Add(_paramPrice);
 
-        //    internal List<Book> GetBooks(int inOneParticularBook = -1) {
+                    SqlParameter _paramIsPaperBack = _sqlCommand.CreateParameter();
+                    _paramIsPaperBack.DbType = DbType.Boolean;
+                    _paramIsPaperBack.ParameterName = "@ParamIsPaperBack";
+                    _paramIsPaperBack.Value = b.IsPaperback;
+                    _sqlCommand.Parameters.Add(_paramIsPaperBack);
 
+                    SqlParameter _paramPublishDate = _sqlCommand.CreateParameter();
+                    _paramPublishDate.DbType = DbType.DateTime;
+                    _paramPublishDate.ParameterName = "@ParamPublishDate";
+                    _paramPublishDate.Value = b.PublishDate;
+                    _sqlCommand.Parameters.Add(_paramPublishDate);
 
-        //        // TESTing - just mock the list right now
-        //        // MockBooks _mockBooks = new MockBooks();
-        //        // return _mockBooks.Books;
+                    SqlParameter _paramGenreIDFK = _sqlCommand.CreateParameter();
+                    _paramGenreIDFK.DbType = DbType.Int32;
+                    _paramGenreIDFK.ParameterName = "@ParamGenreID_FK";
+                    _paramGenreIDFK.Value = b.GenreID_FK;
+                    _sqlCommand.Parameters.Add(_paramGenreIDFK);
 
-        //        // implement this with ado.net  
-        //        List<Book> _list = new List<Book>();
-        //        string _sqlStatement = "SELECT BookID, Title, Book_Description, Book_Price, Book_IsPaperBack, Book_AuthorID_FK, GenreID_FK FROM Book";
-        //        using (SqlConnection con = new SqlConnection(_conn))
-        //        {
-        //            //using (SqlCommand getUserComm = new SqlCommand("spGetBooks", con))
-        //            using (SqlCommand _sqlCommand = new SqlCommand(_sqlStatement, con))
-        //            {
+                    SqlParameter _paramAuthorIDFK = _sqlCommand.CreateParameter();
+                    _paramAuthorIDFK.DbType = DbType.Int32;
+                    _paramAuthorIDFK.ParameterName = "@ParamAuthorID_FK";
+                    _paramAuthorIDFK.Value = b.AuthorID_FK;
+                    _sqlCommand.Parameters.Add(_paramAuthorIDFK);
 
-        //                //getUserComm.CommandType = CommandType.StoredProcedure;
-        //                _sqlCommand.CommandType = CommandType.Text;
-        //                _sqlCommand.CommandTimeout = 35;
-        //                _sqlCommand.Parameters.AddWithValue("@BookID", inOneParticularBook);
+                    SqlParameter _paramPublisherIDFK = _sqlCommand.CreateParameter();
+                    _paramPublisherIDFK.DbType = DbType.Int32;
+                    _paramPublisherIDFK.ParameterName = "@ParamPublisherID_FK";
+                    _paramPublisherIDFK.Value = b.PublisherID_FK;
+                    _sqlCommand.Parameters.Add(_paramPublisherIDFK);
 
-        //                con.Open();
-        //                Book _book;
-        //                using (SqlDataReader reader = _sqlCommand.ExecuteReader())
-        //                {
+                    SqlParameter _paramBookIDReturn = _sqlCommand.CreateParameter();
+                    _paramBookIDReturn.DbType = DbType.Int32;
+                    _paramBookIDReturn.ParameterName = "@ParamOutBookID";
+                    _sqlCommand.Parameters.Add(_paramBookIDReturn);
+                    _paramBookIDReturn.Direction = ParameterDirection.Output;
 
-        //                    while (reader.Read())
-        //                    {
-        //                        _book = new Book
-        //                        {
-        //                            BookID = reader.GetInt32(reader.GetOrdinal("BookID")),
-        //                            Title = (string)reader["Title"],
-        //                            Description = (string)reader["Book_Description"],
-        //                            Price = reader.GetDecimal(reader.GetOrdinal("Book_Price")),
-        //                            IsPaperback = (string)reader["Book_IsPaperBack"],
-        //                            Author_FK = reader.GetInt32(reader.GetOrdinal("Book_AuthorID_FK")),
-        //                            Genre_FK = reader.GetInt32(reader.GetOrdinal("GenreID_FK"))
-        //                        };
-        //                        _list.Add(_book);
-        //                    }
-        //                }
-        //                con.Close();
-        //            }
-        //        }
-        //        return _list;
-        //    }
+                    con.Open();
+                    _sqlCommand.ExecuteNonQuery();   // calls the sp                                                      
+                    var result = _paramBookIDReturn.Value;
+                    con.Close();
+                    return (int)result;
+                }
 
+            }
+        }
 
+        public void UpdateBook(Book b)
+        {
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spUpdateBook", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
 
+                    SqlParameter _paramBookID = _sqlCommand.CreateParameter();
+                    _paramBookID.DbType = DbType.Int32;
+                    _paramBookID.ParameterName = "@ParamBookID";
+                    _paramBookID.Value = b.BookID;
+                    _sqlCommand.Parameters.Add(_paramBookID);
+
+                    SqlParameter _paramTitle = _sqlCommand.CreateParameter();
+                    _paramTitle.DbType = DbType.String;
+                    _paramTitle.ParameterName = "@ParamTitle";
+                    _paramTitle.Value = b.Title;
+                    _sqlCommand.Parameters.Add(_paramTitle);
+
+                    SqlParameter _paramDescription = _sqlCommand.CreateParameter();
+                    _paramDescription.DbType = DbType.String;
+                    _paramDescription.ParameterName = "@ParamDescription";
+                    _paramDescription.Value = b.Description;
+                    _sqlCommand.Parameters.Add(_paramDescription);
+
+                    SqlParameter _paramPrice = _sqlCommand.CreateParameter();
+                    _paramPrice.DbType = DbType.Decimal;
+                    _paramPrice.ParameterName = "@ParamPrice";
+                    _paramPrice.Value = b.Price;
+                    _sqlCommand.Parameters.Add(_paramPrice);
+
+                    SqlParameter _paramIsPaperBack = _sqlCommand.CreateParameter();
+                    _paramIsPaperBack.DbType = DbType.Boolean;
+                    _paramIsPaperBack.ParameterName = "@ParamIsPaperBack";
+                    _paramIsPaperBack.Value = b.IsPaperback;
+                    _sqlCommand.Parameters.Add(_paramIsPaperBack);
+
+                    SqlParameter _paramPublishDate = _sqlCommand.CreateParameter();
+                    _paramPublishDate.DbType = DbType.DateTime;
+                    _paramPublishDate.ParameterName = "@ParamPublishDate";
+                    _paramPublishDate.Value = b.PublishDate;
+                    _sqlCommand.Parameters.Add(_paramPublishDate);
+
+                    SqlParameter _paramGenreIDFK = _sqlCommand.CreateParameter();
+                    _paramGenreIDFK.DbType = DbType.Int32;
+                    _paramGenreIDFK.ParameterName = "@ParamGenreID_FK";
+                    _paramGenreIDFK.Value = b.GenreID_FK;
+                    _sqlCommand.Parameters.Add(_paramGenreIDFK);
+
+                    SqlParameter _paramAuthorIDFK = _sqlCommand.CreateParameter();
+                    _paramAuthorIDFK.DbType = DbType.Int32;
+                    _paramAuthorIDFK.ParameterName = "@ParamAuthorID_FK";
+                    _paramAuthorIDFK.Value = b.AuthorID_FK;
+                    _sqlCommand.Parameters.Add(_paramAuthorIDFK);
+
+                    SqlParameter _paramPublisherIDFK = _sqlCommand.CreateParameter();
+                    _paramPublisherIDFK.DbType = DbType.Int32;
+                    _paramPublisherIDFK.ParameterName = "@ParamPublisherID_FK";
+                    _paramPublisherIDFK.Value = b.PublisherID_FK;
+                    _sqlCommand.Parameters.Add(_paramPublisherIDFK);
+               
+                    con.Open();
+                    _sqlCommand.ExecuteNonQuery();   // calls the sp                                                      
+                    con.Close();
+
+                }
+            }
+        }
+
+        public void DeleteBook(Book b) 
+        {
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spDeleteBook", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
+
+                    SqlParameter _parameter = _sqlCommand.CreateParameter();
+                    _parameter.DbType = DbType.Int32;
+                    _parameter.ParameterName = "@ParamBookID";
+                    _parameter.Value = b.BookID;
+                    _sqlCommand.Parameters.Add(_parameter);
+
+                    con.Open();
+                    _sqlCommand.ExecuteNonQuery();   // calls the sp                 
+                    con.Close();
+                }
+            }
+        }
+
+        #endregion
     }
 }

@@ -4,11 +4,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient; // needs to be added to use database Classes
 
-
 namespace ConsoleLibrary
 {
-
-    
 
     class Program
     {
@@ -17,11 +14,10 @@ namespace ConsoleLibrary
                   
             Printer.HeaderPrint();
 
-            //TODO: STEP 1 - search, login, register(DONE)  - main menu
-
             // loop to continue until user is done
             string input;
             bool IsFound = false;
+
             do
             {
                 User loginInUser = new User();
@@ -79,11 +75,9 @@ namespace ConsoleLibrary
                     // PATRON - least privileges
                     // CHECKOUT STUFF
                     // menu - search, update my profile, logout 
-                    if (loginInUser.RoleID_FK == 3)
+                    if (loginInUser.RoleID_FK == 3) // PATRON ROLE
                     {
-
                         Console.WriteLine("MENU: S - Search, P - My Profile, L - Logout");
-
                     }
                     else if(loginInUser.RoleID_FK == 2) // LIBRARIAN ROLE
                     {
@@ -93,8 +87,7 @@ namespace ConsoleLibrary
                     }
                     else if (loginInUser.RoleID_FK == 1) // ADMINISTRATOR ROLE
                     {
-                        Console.WriteLine("MENU: S - Search, P - My Profile,  B - Book, A - Author, P - Publisher, G  - Genre, U - User, L - Logout");
-
+                        Console.WriteLine("MENU: S - Search, P - My Profile,  B - Book, A - Author, P - Publisher, G - Genre, U - User, L - Logout");
                     }
 
 
