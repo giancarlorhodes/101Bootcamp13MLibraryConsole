@@ -99,6 +99,7 @@ namespace UnitTestLibrary
             // assert
             Assert.IsNotNull(bookUpdated);
             Assert.IsTrue(bookUpdated.Title == "Testing321");
+
             // cleanup
             b.BookID = savePK;
             _datasource.DeleteBook(b);

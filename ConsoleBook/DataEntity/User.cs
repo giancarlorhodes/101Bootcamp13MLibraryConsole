@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleLibrary.DataEntity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,12 @@ namespace ConsoleLibrary
         public string UserName { get; set; }
         public string Password { get; set; }
         public int RoleID_FK { get; set; } // foreign key property
+
+        public Role Role { get; set; }
+
+        // constructor
+        public User() {
+            Role = new Role();
+        }
     }
 }

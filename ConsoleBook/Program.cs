@@ -10,8 +10,7 @@ namespace ConsoleLibrary
     class Program
     {
         static void Main(string[] args)
-        {
-                  
+        {                  
             Printer.HeaderPrint();
 
             // loop to continue until user is done
@@ -21,12 +20,12 @@ namespace ConsoleLibrary
             do
             {
                 User loginInUser = new User();
-                input = Printer.MainMenuPrint(IsFound);
+                Printer.MainMenuPrint(IsFound);
+                input = Console.ReadLine().ToLower();
 
                 if (input.ToLower() == "r") // REGISTER
                 {
-                    // User Menu 
-
+                  
                     // add user
                     User u = Printer.CollectAddUserData();
                     DbAdo data = new DbAdo();
@@ -34,7 +33,7 @@ namespace ConsoleLibrary
                 }
                 else if(input.ToLower() == "l") // LOGIN                    
                 {
-                    // login method and where to go next ??
+                    // login method and , where to go next ??
 
                     // WHAT ARE THE LOGICAL STEPS FOR LOGGING IN? 
 
@@ -61,7 +60,8 @@ namespace ConsoleLibrary
                         {
                             // matched
                             loginInUser = current;
-                            Console.WriteLine("Match found");
+                            Console.WriteLine("Match found. Welcome {0} {1}. Your Role is {2}.", loginInUser.FirstName, 
+                                loginInUser.LastName, loginInUser.Role.RoleName);
                             IsFound = true;
                         }                      
                     }
@@ -70,97 +70,130 @@ namespace ConsoleLibrary
                         Console.WriteLine("User incorrect. Try again.");
                     }
 
-
                     // depending on the Role, we will want to provide a custom set of menu options
                     // PATRON - least privileges
                     // CHECKOUT STUFF
                     // menu - search, update my profile, logout 
-                    if (loginInUser.RoleID_FK == 3) // PATRON ROLE
+                    if (loginInUser.RoleID_FK == (int)Roles.Patron) // PATRON ROLE
                     {
-                        Console.WriteLine("MENU: S - Search, P - My Profile, L - Logout");
+                        Console.WriteLine("MENU: S - Search, P - My Profile, O - Logout");
+                        string inputPatron = Console.ReadLine();
+                        if (inputPatron.ToLower() == "o")
+                        {
+                            IsFound = false; // without this - a bug that caused an infinite loop
+                            Console.WriteLine("Logging out .... Bye {0} {1}", loginInUser.FirstName, loginInUser.LastName);
+                            continue;
+                        }
+                        else
+                        {
+                            Printer.PatronOptions(inputPatron, loginInUser);
+                        }
                     }
-                    else if(loginInUser.RoleID_FK == 2) // LIBRARIAN ROLE
+                    else if(loginInUser.RoleID_FK == (int)Roles.Librarian) // LIBRARIAN ROLE
                     {
 
-                        Console.WriteLine("MENU: S - Search, P - My Profile,  B - Book, A - Author, P - Publisher, G - Genre, L - Logout");
-
+                        Console.WriteLine("MENU: S - Search, P - My Profile,  B - Book, A - Author, " + 
+                            " P - Publisher, G - Genre, O - Logout");
+                        string inputLibrarian = Console.ReadLine();
+                        if (inputLibrarian.ToLower() == "o")
+                        {
+                            IsFound = false; // without this - a bug that caused an infinite loop
+                            Console.WriteLine("Logging out .... Bye {0} {1}", loginInUser.FirstName, loginInUser.LastName);
+                            continue;
+                        }
+                        else
+                        {
+                            Printer.LibrarianOptions(inputLibrarian, loginInUser);
+                        }
                     }
-                    else if (loginInUser.RoleID_FK == 1) // ADMINISTRATOR ROLE
+                    else if (loginInUser.RoleID_FK == (int)Roles.Administrator) // ADMINISTRATOR ROLE
                     {
-                        Console.WriteLine("MENU: S - Search, P - My Profile,  B - Book, A - Author, P - Publisher, G - Genre, U - User, L - Logout");
+                        Console.WriteLine("MENU: S - Search, P - My Profile,  B - Book, A - Author, " + 
+                            " P - Publisher, G - Genre, U - User, O - Logout");
+                        string inputAdmin = Console.ReadLine();
+                        if (inputAdmin.ToLower() == "o")
+                        {
+                            IsFound = false; // without this - a bug that caused an infinite loop
+                            Console.WriteLine("Logging out .... Bye {0} {1}", loginInUser.FirstName, loginInUser.LastName);
+                            continue;
+                        }
+                        else 
+                        {
+                            Printer.AdminOptions(inputAdmin, loginInUser);
+                        }
                     }
-
-
-
-                    // LIBRARIAN
-                    // CHECKBACK IN STUFF
-                    // menu - search, update my profile, Book, Publisher, Genre,  logout 
-
+                
                     // ADMINSTRATOR - most privieges
                     // CHANGE PASSWORD, RESETTING STUFF
                     // menu - search, update my profile, Book, Publisher, Genre, Users  logout 
                 }
             } while (input.ToLower() != "q");
 
-
-                // TODO: OLD REWRITE
-                //string[] _tokens; // string array
-                //_tokens = Printer.GetTokensImproved();
-
-                //while (_tokens[0] != "Q")
-                //{
-                //    switch (_tokens[0])
-                //    {
-                //        // prints a generic list of the tables to operate on
-                //        case "PT":
-                //            {
-                //                // TODO: refactor this, seems like a code smell to have to create a list and
-                //                // add here? Is there a better place to move this code?
-                //                List<TableName> tablesList = new System.Collections.Generic.List<TableName>();
-                //                tablesList.Add(TableName.Author);
-                //                tablesList.Add(TableName.Book);
-                //                Printer _printer = new Printer(tablesList);
-                //                _printer.PrintTables();
-                //                break;
-                //            }
-                //        // prints out the details of the table or list
-                //        case "P":
-                //            {
-                //                // TODO: refactor to remove the out keyword
-                //                int _valueSecondToken;
-                //                if (int.TryParse(_tokens[1], out _valueSecondToken))
-                //                    Printer.PrintTableRows(_tokens[1]); // needs implementing
-                //                break;
-                //            }
-                //        case "A":
-                //            {
-                //                // adding implementaton for SQLSSERVER DATABASE ADO.NET
-                //                Console.WriteLine("adding"); // TESTING ONLY
-                //                break;
-                //            }
-                //        case "D":
-                //            {
-                //                // delete implmentation  for SQLSSERVER DATABASE ADO.NET
-                //                Console.WriteLine("delete");  // TESTING ONLY
-                //                break;
-                //            }
-                //        case "U":
-                //            {
-                //                // update implemtation  for SQLSSERVER DATABASE ADO.NET
-                //                Console.WriteLine("update");  // TESTING ONLY
-                //                break;
-                //            }
-                //        case "C":
-                //            {
-                //                Printer.ClearScreen();
-                //                break;
-                //            }
-                //    }
-                //    _tokens = Printer.GetTokensImproved();
-                //}
-
-                Printer.FooterPrint();
+            Printer.FooterPrint();
             Console.ReadLine(); // stop program
         }
     }
 }
+
+
+
+
+
+//********************************* OLD CODE *****************************************************************/
+
+
+// TODO: OLD REWRITE
+//string[] _tokens; // string array
+//_tokens = Printer.GetTokensImproved();
+
+//while (_tokens[0] != "Q")
+//{
+//    switch (_tokens[0])
+//    {
+//        // prints a generic list of the tables to operate on
+//        case "PT":
+//            {
+//                // TODO: refactor this, seems like a code smell to have to create a list and
+//                // add here? Is there a better place to move this code?
+//                List<TableName> tablesList = new System.Collections.Generic.List<TableName>();
+//                tablesList.Add(TableName.Author);
+//                tablesList.Add(TableName.Book);
+//                Printer _printer = new Printer(tablesList);
+//                _printer.PrintTables();
+//                break;
+//            }
+//        // prints out the details of the table or list
+//        case "P":
+//            {
+//                // TODO: refactor to remove the out keyword
+//                int _valueSecondToken;
+//                if (int.TryParse(_tokens[1], out _valueSecondToken))
+//                    Printer.PrintTableRows(_tokens[1]); // needs implementing
+//                break;
+//            }
+//        case "A":
+//            {
+//                // adding implementaton for SQLSSERVER DATABASE ADO.NET
+//                Console.WriteLine("adding"); // TESTING ONLY
+//                break;
+//            }
+//        case "D":
+//            {
+//                // delete implmentation  for SQLSSERVER DATABASE ADO.NET
+//                Console.WriteLine("delete");  // TESTING ONLY
+//                break;
+//            }
+//        case "U":
+//            {
+//                // update implemtation  for SQLSSERVER DATABASE ADO.NET
+//                Console.WriteLine("update");  // TESTING ONLY
+//                break;
+//            }
+//        case "C":
+//            {
+//                Printer.ClearScreen();
+//                break;
+//            }
+//    }
+//    _tokens = Printer.GetTokensImproved();
+//}

@@ -82,7 +82,8 @@ namespace ConsoleLibrary
         public static string[] GetTokensImproved()
         {
             string[] _returnedTokens;
-            Console.WriteLine("MENU: PT - print tables, P {#}, A {#} add, D {#} delete, U {#} update, C clear, Q quit. {#} is required table number argument");
+            Console.WriteLine("MENU: PT - print tables, P {#}, A {#} add, D {#} delete, U {#} update, " + 
+                " C clear, Q quit. {#} is required table number argument");
             Console.WriteLine();
             var _option = Console.ReadLine().ToUpper();
             _returnedTokens = _option.Split(' ');
@@ -90,15 +91,12 @@ namespace ConsoleLibrary
         }
 
 
-        internal static string MainMenuPrint(Boolean f)
+        internal static void MainMenuPrint(Boolean print)
         {
-            string input = "";
-            if (!f)
+            if (!print)
             {
                 Console.WriteLine("MENU: S - Search, L - Login, R - Register, Q - Quit");
-                input = Console.ReadLine();
-            }
-            return input;
+            }      
         }
 
 
@@ -120,9 +118,180 @@ namespace ConsoleLibrary
             return u;
         }
 
+        internal static void PatronOptions(string inInputPatron, User loginInUser)
+        {
+
+
+            DbAdo data = new DbAdo();
+            List<User> listOfUsers;
+  
+
+            switch (inInputPatron)
+            {
+                case "p": 
+                {
+                        User userUpdate = loginInUser;        
+                        Console.WriteLine("Update user profile ...");
+                        
+                        Console.Write("FirstName: {0}: ", loginInUser.FirstName);
+                        string inputFName = Console.ReadLine();                        
+                        userUpdate.FirstName = inputFName;
+                        Console.WriteLine();
+
+                        Console.Write("LastName: {0}: ", loginInUser.LastName);
+                        string inputLName = Console.ReadLine();
+                        userUpdate.LastName = inputLName;
+                        Console.WriteLine();
+
+                        Console.Write("Username: {0}: ", loginInUser.UserName);
+                        string inputUsername = Console.ReadLine();
+                        userUpdate.UserName = inputUsername;
+                        Console.WriteLine();
+
+                        Console.Write("Password: {0}: ", loginInUser.Password);
+                        string inputPassword = Console.ReadLine();
+                        userUpdate.Password = inputPassword;
+
+                        data.UpdateUser(userUpdate);
+                        Console.WriteLine("Updating profile ...");
+
+                        listOfUsers = data.GetUsers();
+                        foreach (var user in listOfUsers)
+                        {
+                            Console.WriteLine("FirstName: {0}, LastName: {1}, Username: {2}, Password: {3}",
+                                user.FirstName, user.LastName, user.UserName, user.Password);
+                        }
+
+                        break; 
+                }
+                case "s": {
+
+                    break;
+                }
+                default:
+                    break;
+            }
+
+        }
+
         internal static void GeneralMenuOptions()
         {
             Console.WriteLine("MENU: S - Search, P - update my profile, L - logout");
+        }
+
+        internal static void LibrarianOptions(string inInputLibrarian, User loginInUser)
+        {
+
+            DbAdo data = new DbAdo();
+            switch (inInputLibrarian)
+            {
+                case "p":
+                    {
+                        User userUpdate = loginInUser;
+                        Console.WriteLine("Updating profile ...");
+                        Console.Write("FirstName: {0}: ", loginInUser.FirstName);
+                        string inputFName = Console.ReadLine();
+                        userUpdate.FirstName = inputFName;
+                        Console.Write("LastName: {0}: ", loginInUser.LastName);
+                        string inputLName = Console.ReadLine();
+                        userUpdate.LastName = inputLName;
+                        //TODO: data.updateUser(userUpdate);
+                        break;
+                    }
+                case "b":
+                    {
+                        
+                        Console.WriteLine("Printing current booklist ...");                        
+                        List<Book> list = data.GetBooks();
+
+                        Console.WriteLine("BookID\t\tPrice\t\tTitle\t");
+                        foreach (var b in list)
+                        {
+                            Console.WriteLine(b.BookID + "\t\t" +b.Price + "\t\t" + b.Title + "\t");                                 
+                        }
+
+                        Console.WriteLine("MENU BOOK: AB - add book, UB - update book,  DB - delete book");
+                        string bookOperation = Console.ReadLine();
+                        if (bookOperation == "AB")
+                        {
+
+                        }
+                        else if (bookOperation == "UB")
+                        {
+
+                        }
+                        else if (bookOperation == "DB")
+                        { 
+                        
+                        }
+                        break;
+                    }
+
+                case "s":
+                    {
+
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+
+        internal static void AdminOptions(string inInputAdmin, User loginInUser)
+        {
+            DbAdo data = new DbAdo();
+            switch (inInputAdmin)
+            {
+                case "p":
+                    {
+                        User userUpdate = loginInUser;
+                        Console.WriteLine("Updating profile ...");
+                        Console.Write("FirstName: {0}: ", loginInUser.FirstName);
+                        string inputFName = Console.ReadLine();
+                        userUpdate.FirstName = inputFName;
+                        Console.Write("LastName: {0}: ", loginInUser.LastName);
+                        string inputLName = Console.ReadLine();
+                        userUpdate.LastName = inputLName;
+                        //TODO: data.updateUser(userUpdate);
+                        break;
+                    }
+                case "b":
+                    {
+
+                        Console.WriteLine("Printing current booklist ...");
+                        List<Book> list = data.GetBooks();
+
+                        Console.WriteLine("BookID\t\tPrice\t\tTitle\t");
+                        foreach (var b in list)
+                        {
+                            Console.WriteLine(b.BookID + "\t\t" + b.Price + "\t\t" + b.Title + "\t");
+                        }
+
+                        Console.WriteLine("MENU BOOK: AB - add book, UB - update book,  DB - delete book");
+                        string bookOperation = Console.ReadLine();
+                        if (bookOperation == "AB")
+                        {
+
+                        }
+                        else if (bookOperation == "UB")
+                        {
+
+                        }
+                        else if (bookOperation == "DB")
+                        {
+
+                        }
+                        break;
+                    }
+
+                case "s":
+                    {
+
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
     }
 }
