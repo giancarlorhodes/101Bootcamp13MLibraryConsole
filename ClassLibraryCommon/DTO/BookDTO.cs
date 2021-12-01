@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleLibrary.DataEntity
+namespace ClassLibraryCommon.DTO
 {
-    public class Book
+    public class BookDTO
     {
         // data
         // represents a row of data in a table

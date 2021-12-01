@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleLibrary.DataEntity
+namespace ClassLibraryCommon.DTO
 {
-    public class Author
+    public class AuthorDTO
     {
         public int AuthorID { get; set; }
         public string FirstName { get; set; }

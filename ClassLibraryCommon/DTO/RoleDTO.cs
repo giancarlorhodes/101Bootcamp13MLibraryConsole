@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleLibrary.DataEntity
+namespace ClassLibraryCommon.DTO
 {
-    public class Role
+    public class RoleDTO
     {
         public int RoleID { get; set; }
         public string RoleName { get; set; }
+
+
+        public RoleDTO() { }
 
     }
 }

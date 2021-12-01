@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E5518B2-F8C2-4A4E-9558-DE45C6D6C263}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleLibrary</RootNamespace>
-    <AssemblyName>ConsoleLibrary</AssemblyName>
+    <ProjectGuid>{8D5692AF-7DC2-4F8D-9408-AA94324F2B21}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClassLibraryCommon</RootNamespace>
+    <AssemblyName>ClassLibraryCommon</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,21 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Printer.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="DTO\AuthorDTO.cs" />
+    <Compile Include="DTO\BookDTO.cs" />
+    <Compile Include="DTO\GenreDTO.cs" />
+    <Compile Include="DTO\PublisherDTO.cs" />
+    <Compile Include="DTO\RoleDTO.cs" />
+    <Compile Include="DTO\UserDTO.cs" />
+    <Compile Include="Enumerations.cs" />
+    <Compile Include="Mock\MockBooksTable.cs" />
+    <Compile Include="Mock\MockGenresTable.cs" />
+    <Compile Include="Mock\MockPublishersTable.cs" />
+    <Compile Include="Mock\MockRolesTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="sqlscripts\create_library_data_and_schema.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassLibraryCommon\ClassLibraryCommon.csproj">
-      <Project>{8d5692af-7dc2-4f8d-9408-aa94324f2b21}</Project>
-      <Name>ClassLibraryCommon</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

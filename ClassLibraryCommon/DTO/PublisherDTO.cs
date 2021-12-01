@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleLibrary.DataEntity
+namespace ClassLibraryCommon.DTO
 {
-    class Publisher
+    class PublisherDTO
     {
         public int PublisherID { get; set; } // Primary Key Property
 

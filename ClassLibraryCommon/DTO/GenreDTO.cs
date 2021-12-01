@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleLibrary.DataEntity
+namespace ClassLibraryCommon.DTO
 {
-    class Genre
+    class GenreDTO
     {
         public int GenreID { get; set; }
         public bool isFiction { get; set; }

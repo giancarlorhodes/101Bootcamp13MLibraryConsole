@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleLibrary
+namespace ClassLibraryCommon
 {
-    enum TableName
-    {        
-        Author = 0,
-        Book = 1
-    }
 
-
-    public enum Roles
+    public enum RoleType
     { 
+        Guest = 0,
         Administrator = 1,
         Librarian = 2,
         Patron = 3

@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E5518B2-F8C2-4A4E-9558-DE45C6D6C263}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleLibrary</RootNamespace>
-    <AssemblyName>ConsoleLibrary</AssemblyName>
+    <ProjectGuid>{DF200C6C-CE37-4585-A376-77C460513806}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClassLibraryDatabase</RootNamespace>
+    <AssemblyName>ClassLibraryDatabase</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -45,21 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Printer.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="DbAdo.cs" />
+    <Compile Include="MockDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="sqlscripts\create_library_data_and_schema.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassLibraryCommon\ClassLibraryCommon.csproj">
-      <Project>{8d5692af-7dc2-4f8d-9408-aa94324f2b21}</Project>
-      <Name>ClassLibraryCommon</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
