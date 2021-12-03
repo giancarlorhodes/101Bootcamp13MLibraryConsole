@@ -1,9 +1,9 @@
-﻿using ClassLibraryCommon.DTO;
+﻿using ClassLibraryCommon;
+using ClassLibraryCommon.DTO;
 using System;
 using System.Collections.Generic;
 
-
-namespace ClassLibraryCommon.Mock
+namespace ClassLibraryDatabase.Mock
 {
     internal class MockRolesTable
     {
@@ -21,5 +21,24 @@ namespace ClassLibraryCommon.Mock
                 new RoleDTO { RoleID = (int)RoleType.Guest, RoleName = RoleType.Guest.ToString()}
             };
         }
+
+
+        public MockRolesTable(List<RoleDTO> inDTO) 
+        {
+            this.Roles = inDTO;
+        }
+
+
+        // methods
+        internal void Add(RoleDTO inRoleDTO)
+        {
+            this.Roles.Add(inRoleDTO);
+        }
+
+        internal void Delete(RoleDTO inRoleDTO)
+        {
+            this.Roles.Add(inRoleDTO);
+        }
+
     }
 }

@@ -20,7 +20,8 @@ namespace ClassLibraryCommon.DTO
         public RoleDTO Role { get; set; }
 
         // constructor
-        public UserDTO() {
+        public UserDTO() 
+        {
             Role = new RoleDTO();
         }
 

@@ -48,10 +48,6 @@
     <Compile Include="DTO\RoleDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Enumerations.cs" />
-    <Compile Include="Mock\MockBooksTable.cs" />
-    <Compile Include="Mock\MockGenresTable.cs" />
-    <Compile Include="Mock\MockPublishersTable.cs" />
-    <Compile Include="Mock\MockRolesTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,7 +11,6 @@ namespace ClassLibraryCommon.DTO
         public int RoleID { get; set; }
         public string RoleName { get; set; }
 
-
         public RoleDTO() { }
 
     }

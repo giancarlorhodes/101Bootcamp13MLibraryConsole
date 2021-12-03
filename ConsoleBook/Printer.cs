@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibraryCommon.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,15 @@ namespace ConsoleLibrary
 
         }
 
+        internal static void Profile(UserDTO user)
+        {
+            Console.WriteLine("first name: {0}, last name: {1}, user: {2}", user.FirstName, user.LastName, user.UserName);
+        }
+
+        internal static void Roles(List<RoleDTO> roles)
+        {
+            throw new NotImplementedException();
+        }
     }
     //    // DATA
     //    private List<TableName> Tables { get; }

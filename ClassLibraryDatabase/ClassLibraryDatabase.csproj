@@ -44,10 +44,23 @@
   <ItemGroup>
     <Compile Include="DbAdo.cs" />
     <Compile Include="MockDb.cs" />
+    <Compile Include="Mock\MockBooksTable.cs" />
+    <Compile Include="Mock\MockGenresTable.cs" />
+    <Compile Include="Mock\MockPublishersTable.cs" />
+    <Compile Include="Mock\MockRolesTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibraryCommon\ClassLibraryCommon.csproj">
+      <Project>{8d5692af-7dc2-4f8d-9408-aa94324f2b21}</Project>
+      <Name>ClassLibraryCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sqlscripts\create_library_data_and_schema.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

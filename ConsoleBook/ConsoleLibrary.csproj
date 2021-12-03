@@ -53,12 +53,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sqlscripts\create_library_data_and_schema.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ClassLibraryCommon\ClassLibraryCommon.csproj">
       <Project>{8d5692af-7dc2-4f8d-9408-aa94324f2b21}</Project>
       <Name>ClassLibraryCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibraryDatabase\ClassLibraryDatabase.csproj">
+      <Project>{df200c6c-ce37-4585-a376-77c460513806}</Project>
+      <Name>ClassLibraryDatabase</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

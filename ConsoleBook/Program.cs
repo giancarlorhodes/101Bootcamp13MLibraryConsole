@@ -1,10 +1,10 @@
 ﻿using ClassLibraryCommon;
 using ClassLibraryCommon.DTO;
+using ClassLibraryDatabase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient; // needs to be added to use database Classes
-
 
 namespace ConsoleLibrary
 {
@@ -21,6 +21,7 @@ namespace ConsoleLibrary
             string _input="";
             UserDTO user = new UserDTO();
             //bool IsFound = false;
+            MockDb db = new MockDb();
 
             do
             {
@@ -31,8 +32,20 @@ namespace ConsoleLibrary
 
                 if (_input.ToLower() == "g") 
                 {
+                    user = new UserDTO(RoleType.Guest);                
+                }
 
-                    user = new UserDTO(RoleType.Guest);
+
+                if (_input.ToLower() == "pp")
+                {
+                    Printer.Profile(user);
+                }
+
+
+                if (_input.ToLower() == "pr") 
+                {
+                    var _roles = db.GetRoles();
+                    Printer.Roles(_roles); // TODO: implement this
                 
                 }
 
