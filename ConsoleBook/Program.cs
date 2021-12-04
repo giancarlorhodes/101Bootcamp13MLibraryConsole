@@ -22,11 +22,11 @@ namespace ConsoleLibrary
             UserDTO user = new UserDTO();
             //bool IsFound = false;
             MockDb db = new MockDb();
+            Printer.MainMenu();
 
             do
             {
-                     
-                Printer.MainMenu();
+                                  
                 _input = Console.ReadLine().ToLower();
 
 
@@ -45,8 +45,14 @@ namespace ConsoleLibrary
                 if (_input.ToLower() == "pr") 
                 {
                     var _roles = db.GetRoles();
-                    Printer.Roles(_roles); // TODO: implement this
-                
+                    Printer.Roles(_roles); // TODO: implement this               
+                }
+
+                if (_input.ToLower() == "pm")
+                {
+
+                    Printer.MainMenu();
+
                 }
 
                 //    if (input.ToLower() == "r") // REGISTER

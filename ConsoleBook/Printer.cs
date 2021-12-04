@@ -7,23 +7,28 @@ using System.Threading.Tasks;
 
 namespace ConsoleLibrary
 {
-    internal static class Printer
+    
+
+    public  class Printer 
     {
 
 
         internal static void MainMenu()
         {
-          
-            Console.WriteLine("MENU: g - guest,  r- register, l - login, o - logout, pp - print profile, " +
-                "pr - print roles, pu - print users, q - quit program");
+
+            Console.WriteLine("MENU: select option and hit Enter");
+            Console.WriteLine("g - use app as guest,  r- register, l - login, o - logout");
+            Console.WriteLine("ar - add role, dr - delete role, ur - update role");
+            Console.WriteLine("pr - print roles, pu - print users,  pm - print menu, q - quit program");
             
         }
 
 
-        internal static void End()
+        public static string End()
         {
-            Console.WriteLine("Library App Console Ending. Press Enter ....");
-
+            var _output = "Library App Console Ending. Press Enter ....";
+            Console.WriteLine(_output);
+            return _output;
         }
 
         internal static void Profile(UserDTO user)
@@ -35,6 +40,7 @@ namespace ConsoleLibrary
         {
             throw new NotImplementedException();
         }
+
     }
     //    // DATA
     //    private List<TableName> Tables { get; }
