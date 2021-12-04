@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryCommon.DTO
 {
-    public class RoleDTO
+    public class RoleDTO : ParentDTO
     {
         public int RoleID { get; set; }
         public string RoleName { get; set; }
 
-        public string Comment { get; set; }
+        public RoleDTO() : base() 
+        { 
+        }
 
-        public RoleDTO() { }
+        public RoleDTO(RoleDTO inDTO) : base(inDTO)
+        {
+
+            this.RoleID = inDTO.RoleID;
+            this.RoleName = inDTO.RoleName;
+        }
 
     }
 }
