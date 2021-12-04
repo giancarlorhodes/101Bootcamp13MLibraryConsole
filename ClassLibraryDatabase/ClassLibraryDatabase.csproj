@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="sqlscripts\create_library_data_and_schema.sql" />
+    <Content Include="sqlscripts\create_library_data_and_schema120321.sql" />
+    <Content Include="sqlscripts\create_table_Author.sql" />
+    <Content Include="sqlscripts\create_table_Book.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
