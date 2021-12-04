@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 namespace ConsoleLibrary
 {
     
-
     public  class Printer 
     {
-
-
         internal static void MainMenu()
         {
 
@@ -38,7 +35,11 @@ namespace ConsoleLibrary
 
         internal static void Roles(List<RoleDTO> roles)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Role name\t\tComment");
+            foreach (var item in roles)
+            {
+                Console.WriteLine(item.RoleName + "\t\t" + item.Comment);
+            }
         }
 
     }

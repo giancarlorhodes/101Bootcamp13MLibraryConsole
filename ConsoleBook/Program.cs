@@ -159,6 +159,8 @@ namespace ConsoleLibrary
                 //        // CHANGE PASSWORD, RESETTING STUFF
                 //        // menu - search, update my profile, Book, Publisher, Genre, Users  logout 
                 //    }
+
+                Printer.MainMenu();
             } while (_input.ToLower() != "q");
 
                 Printer.End();
