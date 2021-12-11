@@ -4,7 +4,7 @@ using ClassLibraryDatabase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient; // needs to be added to use database Classes
+
 
 namespace ConsoleLibrary
 {
@@ -22,6 +22,9 @@ namespace ConsoleLibrary
             UserDTO user = new UserDTO();
             //bool IsFound = false;
             MockDb db = new MockDb();
+            string _connection = ConfigurationManager.ConnectionStrings["DBCONN"].ToString();
+            DbAdo ado = new DbAdo(_connection); 
+
             Printer.MainMenu();
 
             do
@@ -44,7 +47,8 @@ namespace ConsoleLibrary
 
                 if (_input.ToLower() == "pr") 
                 {
-                    var _roles = db.GetRoles();
+                    //var _roles = db.GetRoles();
+                    List<RoleDTO> _roles = ado.GetRolesFromDb();
                     Printer.Roles(_roles); // TODO: implement this               
                 }
 

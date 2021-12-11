@@ -51,6 +51,8 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UnitTestValidator.cs" />
+    <Compile Include="UnitTestDbAdo.cs" />
     <Compile Include="UnitTestPrinter.cs" />
     <Compile Include="UnitTestBook.cs" />
     <Compile Include="UnitTestRole.cs" />
@@ -60,6 +62,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibraryCommon\ClassLibraryCommon.csproj">
+      <Project>{8D5692AF-7DC2-4F8D-9408-AA94324F2B21}</Project>
+      <Name>ClassLibraryCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibraryDatabase\ClassLibraryDatabase.csproj">
+      <Project>{DF200C6C-CE37-4585-A376-77C460513806}</Project>
+      <Name>ClassLibraryDatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConsoleBook\ConsoleLibrary.csproj">
       <Project>{5e5518b2-f8c2-4a4e-9558-de45c6d6c263}</Project>
       <Name>ConsoleLibrary</Name>
