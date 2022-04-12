@@ -15,8 +15,6 @@ namespace ConsoleLibrary
         {
 
          
-            //Printer.HeaderPrint();
-
             // loop to continue until user is done - key q
             string _input="";
             UserDTO user = new UserDTO();
@@ -26,13 +24,11 @@ namespace ConsoleLibrary
             DbAdo ado = new DbAdo(_connection); 
 
             Printer.MainMenu();
+            _input = Console.ReadLine().ToLower();
 
             do
             {
                                   
-                _input = Console.ReadLine().ToLower();
-
-
                 if (_input.ToLower() == "g") 
                 {
                     user = new UserDTO(RoleType.Guest);                
@@ -54,9 +50,7 @@ namespace ConsoleLibrary
 
                 if (_input.ToLower() == "pm")
                 {
-
                     Printer.MainMenu();
-
                 }
 
                 //    if (input.ToLower() == "r") // REGISTER
@@ -165,6 +159,8 @@ namespace ConsoleLibrary
                 //    }
 
                 Printer.MainMenu();
+                _input = Console.ReadLine().ToLower();
+
             } while (_input.ToLower() != "q");
 
                 Printer.End();
