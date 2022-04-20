@@ -42,6 +42,14 @@ namespace ConsoleLibrary
             }
         }
 
+        internal static void Users(List<UserDTO> users)
+        {
+            Console.WriteLine("Firstname\t\t\tLastname");
+            foreach (var item in users)
+            {
+                Console.WriteLine(item.FirstName + "\t\t\t" + item.LastName);
+            }
+        }
     }
     //    // DATA
     //    private List<TableName> Tables { get; }

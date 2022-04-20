@@ -19,6 +19,19 @@ namespace ClassLibraryDatabase
 
         // TODO need GetPublishers
 
+
+        // TODO need GetUsers
+        #region Users
+        // R-Read part of CRUD
+        public List<UserDTO> GetUsers()
+        {
+            MockUsersTable _table = new MockUsersTable();
+            return _table.GetUsers();
+        }
+
+        #endregion
+
+        #region Roles
         // R part of CRUD
         public List<RoleDTO> GetRoles()
         {
@@ -50,9 +63,9 @@ namespace ClassLibraryDatabase
 
         }
 
+        #endregion
 
 
-
-        // TODO need GetUsers
+       
     }
 }

@@ -41,6 +41,25 @@ namespace ConsoleLibrary
                     Printer.Profile(user);
                 }
 
+              
+                if (_input.ToLower() == "pu")
+                {
+
+                    List<UserDTO> _users = new List<UserDTO>(); ;
+                    if (_database == DBType.Mock.ToString())
+                    {
+                        _users = db.GetUsers();
+                    }
+                    else
+                    {
+                        // database version
+                        _users = ado.GetUsers();
+              
+                    }
+                    Printer.Users(_users); // TODO: implement this     
+
+                }
+
 
                 if (_input.ToLower() == "pr") 
                 {
@@ -53,12 +72,9 @@ namespace ConsoleLibrary
                     }
                     else 
                     {
-                        _roles = ado.GetRolesFromDb();
+                        _roles = ado.GetRoles();
 
-                    }
-                    
-                   
-                    //List<RoleDTO>
+                    }                    
                     Printer.Roles(_roles); // TODO: implement this               
                 }
 

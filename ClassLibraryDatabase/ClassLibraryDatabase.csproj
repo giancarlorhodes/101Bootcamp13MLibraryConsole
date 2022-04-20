@@ -48,6 +48,7 @@
     <Compile Include="Mock\MockGenresTable.cs" />
     <Compile Include="Mock\MockPublishersTable.cs" />
     <Compile Include="Mock\MockRolesTable.cs" />
+    <Compile Include="Mock\MockUsersTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
