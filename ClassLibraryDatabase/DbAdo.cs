@@ -90,7 +90,7 @@ namespace ClassLibraryDatabase
         #region Role CRUD (
 
         // "R - READ" of CRUD
-        public List<RoleDTO> GetRolesFromDb()
+        public List<RoleDTO> GetRoles()
         {
             List<RoleDTO> _list = new List<RoleDTO>();
             using (SqlConnection con = new SqlConnection(_conn))
@@ -186,7 +186,7 @@ namespace ClassLibraryDatabase
                         _sqlCommand.ExecuteNonQuery();   // calls the sp 
                         _result = (int)_paramRoleIDReturn.Value; // has the auto incremented value returned
                         con.Close();
-                        return _result;
+                        return _result; // primary key
                     }
                 }
             }
@@ -262,47 +262,49 @@ namespace ClassLibraryDatabase
 
         #endregion
 
-        //#region User CRUD
-        //public List<User> GetUsers()
-        //{
-        //    List<User> _list = new List<User>();
+        #region User
+        public List<UserDTO> GetUsers()
+        {
+            List<UserDTO> _list = new List<UserDTO>();
+            // TODO - add try catch 
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spGetUser", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
 
-        //    using (SqlConnection con = new SqlConnection(_conn))
-        //    {
-        //        using (SqlCommand _sqlCommand = new SqlCommand("spGetUser", con))
-        //        {
-        //            _sqlCommand.CommandType = CommandType.StoredProcedure;
-        //            _sqlCommand.CommandTimeout = 30;
+                    con.Open();
+                    UserDTO _user;
 
-        //            con.Open();
-        //            User _user;
+                    using (SqlDataReader reader = _sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            _user = new UserDTO
+                            {
+                                UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                LastName = (string)reader["LastName"],
+                                FirstName = (string)reader["FirstName"],
+                                UserName = (string)reader["UserName"],
+                                Password = (string)reader["Password"],
+                                RoleID_FK = reader.GetInt32(reader.GetOrdinal("RoleID")),
+                                Role = new RoleDTO()
+                                {
+                                    RoleID = reader.GetInt32(reader.GetOrdinal("RoleID")),
+                                    RoleName = (string)reader["RoleName"]
+                                }
+                            };
+                            _list.Add(_user);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            return _list;
+        }
 
-        //            using (SqlDataReader reader = _sqlCommand.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    _user = new User
-        //                    {
-        //                        UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
-        //                        LastName = (string)reader["LastName"],
-        //                        FirstName = (string)reader["FirstName"],
-        //                        UserName = (string)reader["UserName"],
-        //                        Password = (string)reader["Password"],
-        //                        RoleID_FK = reader.GetInt32(reader.GetOrdinal("RoleID")),
-        //                        Role = new Role
-        //                        {
-        //                            RoleID = reader.GetInt32(reader.GetOrdinal("RoleID")),
-        //                            RoleName = (string)reader["RoleName"]
-        //                        }
-        //                    };
-        //                    _list.Add(_user);
-        //                }
-        //            }
-        //            con.Close();
-        //        }
-        //    }
-        //    return _list;
-        //}
+        #endregion
 
         //public void CreateUser(User u)
         //{

@@ -100,7 +100,7 @@ namespace UnitTestLibrary
 
 
             // act
-            var _rows = _dbado.GetRolesFromDb();
+            var _rows = _dbado.GetRoles();
 
 
             // assert
@@ -115,11 +115,11 @@ namespace UnitTestLibrary
             // arrange
 
             // act
-            var _rows = _dbado.GetRolesFromDb();
+            var _rows = _dbado.GetRoles();
             int _count = _rows.Count;
             int _max = _rows.Max(y => y.RoleID);
             _dbado.DeleteRoleFromDb(new RoleDTO { RoleID = _max });
-            _rows = _dbado.GetRolesFromDb();
+            _rows = _dbado.GetRoles();
             int _count_after_delete = _rows.Count;
 
             // assert

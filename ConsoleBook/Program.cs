@@ -20,6 +20,7 @@ namespace ConsoleLibrary
             //bool IsFound = false;
             MockDb db = new MockDb();
             string _connection = ConfigurationManager.ConnectionStrings["DBCONN"].ToString();
+            string _database = ConfigurationManager.AppSettings["MOCKORDB"].ToString();
             DbAdo ado = new DbAdo(_connection); 
 
             Printer.MainMenu();
@@ -38,10 +39,39 @@ namespace ConsoleLibrary
                     Printer.Profile(user);
                 }
 
+              
+                if (_input.ToLower() == "pu")
+                {
+
+                    List<UserDTO> _users = new List<UserDTO>(); ;
+                    if (_database == DBType.Mock.ToString())
+                    {
+                        _users = db.GetUsers();
+                    }
+                    else
+                    {
+                        // database version
+                        _users = ado.GetUsers();
+              
+                    }
+                    Printer.Users(_users); // TODO: implement this     
+
+                }
+
                 if (_input.ToLower() == "pr") 
                 {
-                    //var _roles = db.GetRoles();
-                    List<RoleDTO> _roles = ado.GetRolesFromDb();
+                    // TODO: can I make the configurable??
+                    List<RoleDTO> _roles;
+
+                    if (_database == DBType.Mock.ToString())
+                    {
+                        _roles =  db.GetRoles();
+                    }
+                    else 
+                    {
+                        _roles = ado.GetRoles();
+
+                    }                    
                     Printer.Roles(_roles); // TODO: implement this               
                 }
 

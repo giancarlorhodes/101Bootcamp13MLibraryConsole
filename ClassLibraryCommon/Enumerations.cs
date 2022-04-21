@@ -15,5 +15,11 @@ namespace ClassLibraryCommon
         Patron = 3
     }
 
+    public enum DBType
+    { 
+        Mock = 0,
+        Database = 1
+    }
+
 
 }

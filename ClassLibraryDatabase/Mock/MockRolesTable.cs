@@ -38,7 +38,7 @@ namespace ClassLibraryDatabase.Mock
 
         internal void Delete(RoleDTO inRoleDTO)
         {
-            this.Roles.Add(inRoleDTO);
+            this.Roles.Remove(inRoleDTO);
         }
 
     }
