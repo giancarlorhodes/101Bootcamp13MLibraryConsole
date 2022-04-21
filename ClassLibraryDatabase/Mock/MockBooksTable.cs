@@ -2,7 +2,7 @@
 using ClassLibraryCommon.DTO;
 using System;
 
-namespace ClassLibraryCommon.Mock
+namespace ClassLibraryDatabase.Mock
 {
 
 

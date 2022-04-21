@@ -39,6 +39,7 @@ namespace ConsoleLibrary
                     Printer.Profile(user);
                 }
 
+
               
                 if (_input.ToLower() == "pu")
                 {
@@ -57,6 +58,7 @@ namespace ConsoleLibrary
                     Printer.Users(_users); // TODO: implement this     
 
                 }
+
 
                 if (_input.ToLower() == "pr") 
                 {
@@ -83,11 +85,18 @@ namespace ConsoleLibrary
                 if (_input.ToLower() == "r") // REGISTER
                 {
 
-                    Console.WriteLine("// TODO - implement");
-                    // add user
-                    //User u = Printer.CollectAddUserData();
-                    //DbAdo data = new DbAdo();
-                    //data.CreateUser(u);
+                  
+                    UserDTO u = Printer.CollectAddUserData();
+                    if (_database == DBType.Mock.ToString())
+                    {
+                        db.CreateUser(u);
+                    }
+                    else
+                    {
+                        // database version
+                        ado.CreateUser(u);
+
+                    }
                 }
 
                 //    else if(input.ToLower() == "l") // LOGIN                    

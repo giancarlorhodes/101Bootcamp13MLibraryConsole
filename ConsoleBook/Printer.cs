@@ -50,6 +50,26 @@ namespace ConsoleLibrary
                 Console.WriteLine(item.FirstName + "\t\t\t" + item.LastName);
             }
         }
+
+        internal static UserDTO CollectAddUserData()
+        {
+            UserDTO u = new UserDTO();
+
+            // code for getting this User information
+            Console.WriteLine("Enter FirstName: ");
+            u.FirstName = Console.ReadLine();
+            Console.WriteLine("Enter LastName: ");
+            u.LastName = Console.ReadLine();
+            Console.WriteLine("Enter Username: ");
+            u.UserName = Console.ReadLine();
+            Console.WriteLine("Enter Password: ");
+            u.Password = Console.ReadLine();
+            // TODO: how to deal with the RoleID ?
+            u.RoleID_FK = 3; // Patron as default for now
+            return u;
+        }
+
+
     }
     //    // DATA
     //    private List<TableName> Tables { get; }
@@ -142,23 +162,6 @@ namespace ConsoleLibrary
     //    }
 
 
-    //    internal static User CollectAddUserData()
-    //    {
-    //        User u = new User();
-
-    //        // code for getting this User information
-    //        Console.WriteLine("Enter FirstName: ");
-    //        u.FirstName = Console.ReadLine();
-    //        Console.WriteLine("Enter LastName: ");
-    //        u.LastName = Console.ReadLine();
-    //        Console.WriteLine("Enter Username: ");
-    //        u.UserName = Console.ReadLine();
-    //        Console.WriteLine("Enter Password: ");
-    //        u.Password = Console.ReadLine();
-    //        // TODO: how to deal with the RoleID ?
-    //        u.RoleID_FK = 3; // Patron as default for now
-    //        return u;
-    //    }
 
     //    internal static void PatronOptions(string inInputPatron, User loginInUser)
     //    {
