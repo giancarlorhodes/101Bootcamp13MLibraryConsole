@@ -13,7 +13,7 @@ namespace ClassLibraryCommon
 
         public bool IsValidEmail(string inEmail)
         {
-
+            // regular expressions
             string _pattern = @"([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|([]!#-[^-~ \t]|(\\[\t -~]))+)@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+";
             Regex r = new Regex(_pattern, RegexOptions.IgnoreCase);
             var _m =  r.Match(inEmail);
@@ -22,7 +22,7 @@ namespace ClassLibraryCommon
         }
 
 
-
+        // TODO - finish
         public bool IsValidUSPhoneWithAreaCode(string inPhone)
         {
 
@@ -37,4 +37,6 @@ namespace ClassLibraryCommon
             return _isValid;  
         }
     }
+
+
 }

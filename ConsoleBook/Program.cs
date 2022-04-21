@@ -13,8 +13,7 @@ namespace ConsoleLibrary
     {
         static void Main(string[] args)
         {
-
-         
+        
             // loop to continue until user is done - key q
             string _input="";
             UserDTO user = new UserDTO();
@@ -28,18 +27,16 @@ namespace ConsoleLibrary
 
             do
             {
-                                  
+                // enter app as a guest                  
                 if (_input.ToLower() == "g") 
                 {
                     user = new UserDTO(RoleType.Guest);                
                 }
 
-
                 if (_input.ToLower() == "pp")
                 {
                     Printer.Profile(user);
                 }
-
 
                 if (_input.ToLower() == "pr") 
                 {
@@ -53,14 +50,16 @@ namespace ConsoleLibrary
                     Printer.MainMenu();
                 }
 
-                //    if (input.ToLower() == "r") // REGISTER
-                //    {
+                if (_input.ToLower() == "r") // REGISTER
+                {
 
-                //        // add user
-                //        User u = Printer.CollectAddUserData();
-                //        DbAdo data = new DbAdo();
-                //        data.CreateUser(u);
-                //    }
+                    Console.WriteLine("// TODO - implement");
+                    // add user
+                    //User u = Printer.CollectAddUserData();
+                    //DbAdo data = new DbAdo();
+                    //data.CreateUser(u);
+                }
+
                 //    else if(input.ToLower() == "l") // LOGIN                    
                 //    {
                 //        // login method and , where to go next ??

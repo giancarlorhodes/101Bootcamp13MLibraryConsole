@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 namespace ClassLibraryDatabase.Mock
 {
+
+    
     internal class MockRolesTable
     {
         // data
@@ -21,7 +23,6 @@ namespace ClassLibraryDatabase.Mock
                 new RoleDTO { RoleID = (int)RoleType.Guest, RoleName = RoleType.Guest.ToString()}
             };
         }
-
 
         public MockRolesTable(List<RoleDTO> inDTO) 
         {
