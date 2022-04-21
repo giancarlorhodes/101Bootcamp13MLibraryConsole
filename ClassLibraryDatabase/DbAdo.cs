@@ -36,7 +36,7 @@ namespace ClassLibraryDatabase
 
             using (SqlConnection con = new SqlConnection(_conn))
             {
-                using (SqlCommand _sqlCommand = new SqlCommand("spCreateLogException", con))
+                using (SqlCommand _sqlCommand = new SqlCommand("uspCreateLogException", con))
                 {
                  
                     _sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -95,7 +95,7 @@ namespace ClassLibraryDatabase
             List<RoleDTO> _list = new List<RoleDTO>();
             using (SqlConnection con = new SqlConnection(_conn))
             {
-                using (SqlCommand _sqlCommand = new SqlCommand("spGetRole", con))
+                using (SqlCommand _sqlCommand = new SqlCommand("uspGetRole", con))
                 {
                     _sqlCommand.CommandType = CommandType.StoredProcedure;
                     _sqlCommand.CommandTimeout = 10;
@@ -139,7 +139,7 @@ namespace ClassLibraryDatabase
 
                 using (SqlConnection con = new SqlConnection(_conn))
                 {
-                    using (SqlCommand _sqlCommand = new SqlCommand("spCreateRole", con))
+                    using (SqlCommand _sqlCommand = new SqlCommand("uspCreateRole", con))
                     {
                         _sqlCommand.CommandType = CommandType.StoredProcedure;
                         _sqlCommand.CommandTimeout = 30;
@@ -209,7 +209,7 @@ namespace ClassLibraryDatabase
             {
                 using (SqlConnection con = new SqlConnection(_conn))
                 {
-                    using (SqlCommand _sqlCommand = new SqlCommand("spDeleteRole", con))
+                    using (SqlCommand _sqlCommand = new SqlCommand("uspDeleteRole", con))
                     {
                         _sqlCommand.CommandType = CommandType.StoredProcedure;
                         _sqlCommand.CommandTimeout = 30;
@@ -267,42 +267,59 @@ namespace ClassLibraryDatabase
         {
             List<UserDTO> _list = new List<UserDTO>();
             // TODO - add try catch 
-            using (SqlConnection con = new SqlConnection(_conn))
+
+            try
             {
-                using (SqlCommand _sqlCommand = new SqlCommand("spGetUser", con))
+
+                using (SqlConnection con = new SqlConnection(_conn))
                 {
-                    _sqlCommand.CommandType = CommandType.StoredProcedure;
-                    _sqlCommand.CommandTimeout = 30;
-
-                    con.Open();
-                    UserDTO _user;
-
-                    using (SqlDataReader reader = _sqlCommand.ExecuteReader())
+                    using (SqlCommand _sqlCommand = new SqlCommand("uspGetUser", con))
                     {
-                        while (reader.Read())
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        con.Open();
+                        UserDTO _user;
+
+                        using (SqlDataReader reader = _sqlCommand.ExecuteReader())
                         {
-                            _user = new UserDTO
+                            while (reader.Read())
                             {
-                                UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
-                                LastName = (string)reader["LastName"],
-                                FirstName = (string)reader["FirstName"],
-                                UserName = (string)reader["UserName"],
-                                Password = (string)reader["Password"],
-                                RoleID_FK = reader.GetInt32(reader.GetOrdinal("RoleID")),
-                                Role = new RoleDTO()
+                                _user = new UserDTO
                                 {
-                                    RoleID = reader.GetInt32(reader.GetOrdinal("RoleID")),
-                                    RoleName = (string)reader["RoleName"]
-                                }
-                            };
-                            _list.Add(_user);
+                                    UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                    LastName = (string)reader["LastName"],
+                                    FirstName = (string)reader["FirstName"],
+                                    UserName = (string)reader["UserName"],
+                                    Password = (string)reader["Password"],
+                                    RoleID_FK = reader.GetInt32(reader.GetOrdinal("RoleID")),
+                                    Role = new RoleDTO()
+                                    {
+                                        RoleID = reader.GetInt32(reader.GetOrdinal("RoleID")),
+                                        RoleName = (string)reader["RoleName"]
+                                    }
+                                };
+                                _list.Add(_user);
+                            }
                         }
+                        con.Close();
                     }
-                    con.Close();
                 }
             }
+            catch (Exception ex)
+            {
+
+                this.LogException(ex);
+            }
+
             return _list;
         }
+
+
+
+
+           
+        
 
         #endregion
 

@@ -65,6 +65,7 @@
     <Content Include="sqlscripts\create_library_data_and_schema120321.sql" />
     <Content Include="sqlscripts\create_table_Author.sql" />
     <Content Include="sqlscripts\create_table_Book.sql" />
+    <Content Include="sqlscripts\libraryimproved_schema_data_4202022.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
