@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace ClassLibraryCommon.Mock
+namespace ClassLibraryDatabase.Mock
 {
     //internal class MockPublishersTable
     //{

@@ -87,7 +87,7 @@ namespace ClassLibraryDatabase
             }
         }
 
-        #region Role CRUD (
+        #region Role
 
         // "R - READ" of CRUD
         public List<RoleDTO> GetRoles()
@@ -323,61 +323,61 @@ namespace ClassLibraryDatabase
 
         #endregion
 
-        //public void CreateUser(User u)
-        //{
-        //    using (SqlConnection con = new SqlConnection(_conn))
-        //    {
-        //        using (SqlCommand _sqlCommand = new SqlCommand("spCreateUser", con))
-        //        {
-        //            _sqlCommand.CommandType = CommandType.StoredProcedure;
-        //            _sqlCommand.CommandTimeout = 30;
+        public void CreateUser(UserDTO u)
+        {
+            using (SqlConnection con = new SqlConnection(_conn))
+            {
+                using (SqlCommand _sqlCommand = new SqlCommand("spCreateUser", con))
+                {
+                    _sqlCommand.CommandType = CommandType.StoredProcedure;
+                    _sqlCommand.CommandTimeout = 30;
 
-        //            SqlParameter _paramFirstName = _sqlCommand.CreateParameter();
-        //            _paramFirstName.DbType = DbType.String;
-        //            _paramFirstName.ParameterName = "@ParamFirstName";
-        //            _paramFirstName.Value = u.FirstName;
-        //            _sqlCommand.Parameters.Add(_paramFirstName);
+                    SqlParameter _paramFirstName = _sqlCommand.CreateParameter();
+                    _paramFirstName.DbType = DbType.String;
+                    _paramFirstName.ParameterName = "@ParamFirstName";
+                    _paramFirstName.Value = u.FirstName;
+                    _sqlCommand.Parameters.Add(_paramFirstName);
 
-        //            SqlParameter _paramLastName = _sqlCommand.CreateParameter();
-        //            _paramLastName.DbType = DbType.String;
-        //            _paramLastName.ParameterName = "@ParamLastName";
-        //            _paramLastName.Value = u.LastName;
-        //            _sqlCommand.Parameters.Add(_paramLastName);
+                    SqlParameter _paramLastName = _sqlCommand.CreateParameter();
+                    _paramLastName.DbType = DbType.String;
+                    _paramLastName.ParameterName = "@ParamLastName";
+                    _paramLastName.Value = u.LastName;
+                    _sqlCommand.Parameters.Add(_paramLastName);
 
-        //            SqlParameter _paramUserName = _sqlCommand.CreateParameter();
-        //            _paramUserName.DbType = DbType.String;
-        //            _paramUserName.ParameterName = "@ParamUserName";
-        //            _paramUserName.Value = u.UserName;
-        //            _sqlCommand.Parameters.Add(_paramUserName);
+                    SqlParameter _paramUserName = _sqlCommand.CreateParameter();
+                    _paramUserName.DbType = DbType.String;
+                    _paramUserName.ParameterName = "@ParamUserName";
+                    _paramUserName.Value = u.UserName;
+                    _sqlCommand.Parameters.Add(_paramUserName);
 
-        //            SqlParameter _paramPassword = _sqlCommand.CreateParameter();
-        //            _paramPassword.DbType = DbType.String;
-        //            _paramPassword.ParameterName = "@ParamPassword";
-        //            _paramPassword.Value = u.Password;
-        //            _sqlCommand.Parameters.Add(_paramPassword);
+                    SqlParameter _paramPassword = _sqlCommand.CreateParameter();
+                    _paramPassword.DbType = DbType.String;
+                    _paramPassword.ParameterName = "@ParamPassword";
+                    _paramPassword.Value = u.Password;
+                    _sqlCommand.Parameters.Add(_paramPassword);
 
-        //            SqlParameter _paramRoleIdFK = _sqlCommand.CreateParameter();
-        //            _paramRoleIdFK.DbType = DbType.Int32;
-        //            _paramRoleIdFK.ParameterName = "@ParamRoleID";
-        //            _paramRoleIdFK.Value = u.RoleID_FK;
-        //            _sqlCommand.Parameters.Add(_paramRoleIdFK);
+                    SqlParameter _paramRoleIdFK = _sqlCommand.CreateParameter();
+                    _paramRoleIdFK.DbType = DbType.Int32;
+                    _paramRoleIdFK.ParameterName = "@ParamRoleID";
+                    _paramRoleIdFK.Value = u.RoleID_FK;
+                    _sqlCommand.Parameters.Add(_paramRoleIdFK);
 
-        //            //SqlParameter _paramAuthorIDReturn = _sqlCommand.CreateParameter();
-        //            //_paramAuthorIDReturn.DbType = DbType.Int32;
-        //            //_paramAuthorIDReturn.ParameterName = "@ParamOutAuthorID";
-        //            //var pk = _sqlCommand.Parameters.Add(_paramAuthorIDReturn);
-        //            //_paramAuthorIDReturn.Direction = ParameterDirection.Output;
+                    //SqlParameter _paramAuthorIDReturn = _sqlCommand.CreateParameter();
+                    //_paramAuthorIDReturn.DbType = DbType.Int32;
+                    //_paramAuthorIDReturn.ParameterName = "@ParamOutAuthorID";
+                    //var pk = _sqlCommand.Parameters.Add(_paramAuthorIDReturn);
+                    //_paramAuthorIDReturn.Direction = ParameterDirection.Output;
 
-        //            con.Open();
-        //            _sqlCommand.ExecuteNonQuery();   // calls the sp 
-        //                                             //var result = _paramAuthorIDReturn.Value;
-        //            con.Close();
-        //            //return (int)result;
+                    con.Open();
+                    _sqlCommand.ExecuteNonQuery();   // calls the sp 
+                                                     //var result = _paramAuthorIDReturn.Value;
+                    con.Close();
+                    //return (int)result;
 
 
-        //        }
-        //    }
-        //}     
+                }
+            }
+        }
 
         //public void UpdateUser(User u)
         //{

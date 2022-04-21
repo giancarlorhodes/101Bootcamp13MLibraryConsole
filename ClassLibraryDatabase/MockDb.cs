@@ -21,13 +21,39 @@ namespace ClassLibraryDatabase
 
 
         // TODO need GetUsers
+
+        private MockUsersTable _tableUsers;
+        private MockRolesTable _tableRoles;
+        private MockBooksTable _tableBooks;
+
+        public MockDb() 
+        { 
+            _tableUsers = new MockUsersTable();
+            _tableRoles = new MockRolesTable();
+            _tableBooks = new MockBooksTable();
+        
+        }
+
+
         #region Users
         // R-Read part of CRUD
         public List<UserDTO> GetUsers()
-        {
-            MockUsersTable _table = new MockUsersTable();
-            return _table.GetUsers();
+        {          
+            return _tableUsers.GetUsers();
         }
+
+
+        public void CreateUser(UserDTO u)
+        {
+            _tableUsers.Add(u);
+
+        }
+
+        public void DeleteUser(UserDTO u)
+        {
+            _tableUsers.Delete(u);
+        }
+
 
         #endregion
 

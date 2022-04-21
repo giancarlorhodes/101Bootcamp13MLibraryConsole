@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace ClassLibraryCommon.Mock
+namespace ClassLibraryDatabase.Mock
 {
     //internal class MockGenresTable
     //{
