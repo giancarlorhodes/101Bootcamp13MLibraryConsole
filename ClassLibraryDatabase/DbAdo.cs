@@ -130,7 +130,7 @@ namespace ClassLibraryDatabase
 
 
         // "C - INSERT" of CRUD
-        public int CreateRoleIntoDb(RoleDTO r)
+        public int CreateRole(RoleDTO r)
         {
             int _result = 0;
 
@@ -202,7 +202,7 @@ namespace ClassLibraryDatabase
 
 
         // "D - DELETE" of CRUD  
-        public void DeleteRoleFromDb(RoleDTO r)
+        public void DeleteRole(RoleDTO r)
         {
 
             try
@@ -215,7 +215,7 @@ namespace ClassLibraryDatabase
                         _sqlCommand.CommandTimeout = 30;
                         SqlParameter _parameter = _sqlCommand.CreateParameter();
                         _parameter.DbType = DbType.Int32;
-                        _parameter.ParameterName = "@ParamRoleID";
+                        _parameter.ParameterName = "@parmRoleID";
                         _parameter.Value = r.RoleID;
                         _sqlCommand.Parameters.Add(_parameter);
 

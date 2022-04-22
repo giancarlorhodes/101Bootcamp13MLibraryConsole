@@ -27,7 +27,8 @@ namespace UnitTestLibrary
         // methods
         private string GetConnectionString()
         {
-            return "Data Source=LAPTOP-401;Initial Catalog=LibraryUT;Integrated Security=True";
+            return "Data Source=LAPTOP-1RTOL5OV;Initial Catalog=LibraryUT;Integrated Security=True";
+            //return  ConfigurationManager.AppSettings["DBCONN"].ToString();
         }
 
         [TestMethod]
@@ -68,7 +69,7 @@ namespace UnitTestLibrary
 
             // act
 
-            int _pk = _dbado.CreateRoleIntoDb(roleDTO);
+            int _pk = _dbado.CreateRole(roleDTO);
             //        int savePK = _datasource.CreateBook(b);  
             //        list = _datasource.GetBooks();
             //        Book bookToUpdate = list.Where(bk => bk.BookID == savePK).FirstOrDefault(); // this get the book
@@ -118,7 +119,7 @@ namespace UnitTestLibrary
             var _rows = _dbado.GetRoles();
             int _count = _rows.Count;
             int _max = _rows.Max(y => y.RoleID);
-            _dbado.DeleteRoleFromDb(new RoleDTO { RoleID = _max });
+            _dbado.DeleteRole(new RoleDTO { RoleID = _max });
             _rows = _dbado.GetRoles();
             int _count_after_delete = _rows.Count;
 
