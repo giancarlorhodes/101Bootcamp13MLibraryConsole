@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30406.217
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleLibrary", "ConsoleBook\ConsoleLibrary.csproj", "{5E5518B2-F8C2-4A4E-9558-DE45C6D6C263}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryCommon", "ClassLibraryCommon\ClassLibraryCommon.csproj", "{8D5692AF-7DC2-4F8D-9408-AA94324F2B21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryDatabase", "ClassLibraryDatabase\ClassLibraryDatabase.csproj", "{DF200C6C-CE37-4585-A376-77C460513806}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLCommonCore", "CLCommonCore\CLCommonCore.csproj", "{FFD9B50E-0793-4A26-95D8-3A7283B0A677}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{DF200C6C-CE37-4585-A376-77C460513806}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF200C6C-CE37-4585-A376-77C460513806}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF200C6C-CE37-4585-A376-77C460513806}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD9B50E-0793-4A26-95D8-3A7283B0A677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD9B50E-0793-4A26-95D8-3A7283B0A677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD9B50E-0793-4A26-95D8-3A7283B0A677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD9B50E-0793-4A26-95D8-3A7283B0A677}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
