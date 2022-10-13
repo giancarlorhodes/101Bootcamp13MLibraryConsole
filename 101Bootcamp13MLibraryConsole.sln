@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryDatabase", "Cla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLCommonCore", "CLCommonCore\CLCommonCore.csproj", "{FFD9B50E-0793-4A26-95D8-3A7283B0A677}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryUICore", "LibraryUICore\LibraryUICore.csproj", "{91E83D93-F892-4CF2-9928-6ED49A24831C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLDatabaseCore", "CLDatabaseCore\CLDatabaseCore.csproj", "{F90F2B4E-A357-4E69-969E-AFA0C4AB6FAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{FFD9B50E-0793-4A26-95D8-3A7283B0A677}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFD9B50E-0793-4A26-95D8-3A7283B0A677}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFD9B50E-0793-4A26-95D8-3A7283B0A677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91E83D93-F892-4CF2-9928-6ED49A24831C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91E83D93-F892-4CF2-9928-6ED49A24831C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91E83D93-F892-4CF2-9928-6ED49A24831C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91E83D93-F892-4CF2-9928-6ED49A24831C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F90F2B4E-A357-4E69-969E-AFA0C4AB6FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90F2B4E-A357-4E69-969E-AFA0C4AB6FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90F2B4E-A357-4E69-969E-AFA0C4AB6FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90F2B4E-A357-4E69-969E-AFA0C4AB6FAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="sqlscripts\create_library_data_and_schema.sql" />
+    <None Remove="sqlscripts\create_library_data_and_schema120321.sql" />
+    <None Remove="sqlscripts\create_table_Author.sql" />
+    <None Remove="sqlscripts\create_table_Book.sql" />
+    <None Remove="sqlscripts\libraryimproved_schema_data_4202022.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="sqlscripts\create_library_data_and_schema.sql" />
+    <Content Include="sqlscripts\create_library_data_and_schema120321.sql" />
+    <Content Include="sqlscripts\create_table_Author.sql" />
+    <Content Include="sqlscripts\create_table_Book.sql" />
+    <Content Include="sqlscripts\libraryimproved_schema_data_4202022.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CLCommonCore\CLCommonCore.csproj" />
+  </ItemGroup>
+
+</Project>
